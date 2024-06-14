@@ -1,10 +1,11 @@
 <div class="container mt-4">
+  <!-- Formulario para crear nuevas reseñas -->
   <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="review_rating">Rating</label>
+      <label for="reviewRating">Rating</label>
       <input
-        id="review_rating"
-        formControlName="review_rating"
+        id="reviewRating"
+        formControlName="reviewRating"
         type="number"
         min="1"
         max="5"
@@ -13,10 +14,10 @@
     </div>
 
     <div class="form-group">
-      <label for="review_comment">Comment</label>
+      <label for="reviewComment">Comment</label>
       <textarea
-        id="review_comment"
-        formControlName="review_comment"
+        id="reviewComment"
+        formControlName="reviewComment"
         class="form-control"
         rows="3"
       ></textarea>
@@ -24,34 +25,32 @@
 
     <div class="form-group form-check">
       <input
-        id="is_approved"
-        formControlName="is_approved"
+        id="isApproved"
+        formControlName="isApproved"
         type="checkbox"
         class="form-check-input"
       />
-      <label for="is_approved" class="form-check-label">Is Approved</label>
-    </div>
-
-    <div class="form-group">
-      <label for="customer_id">Customer ID</label>
-      <input
-        id="customer_id"
-        formControlName="customer_id"
-        type="text"
-        class="form-control"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="book_id">Book ID</label>
-      <input
-        id="book_id"
-        formControlName="book_id"
-        type="text"
-        class="form-control"
-      />
+      <label for="isApproved" class="form-check-label">Is Approved</label>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+  <!-- Lista de reseñas existentes -->
+  <div *ngIf="reviews.length > 0" class="mt-4">
+    <h3>Reviews:</h3>
+    <div *ngFor="let review of reviews" class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Rating: {{ review.review_rating }}</h5>
+        <p class="card-text">Comment: {{ review.review_comment }}</p>
+        <p class="card-text">Date: {{ review.review_date | date }}</p>
+        <p class="card-text">Approved: {{ review.is_approved ? 'Yes' : 'No' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay reseñas cargadas -->
+  <div *ngIf="reviews.length === 0" class="mt-4">
+    <p>No reviews available.</p>
+  </div>
 </div>

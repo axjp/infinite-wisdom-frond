@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+//import { ReviewService } from '../../../services/review.service';
 import { Review } from '../../../models/review.model';
 import { ReviewService } from '../../../services/reviews.service';
 
@@ -9,36 +10,20 @@ import { ReviewService } from '../../../services/reviews.service';
   styleUrls: ['./reviews.component.scss']
 })
 export class ReviewsComponent implements OnInit {
-  public review: Review = {
-    review_rating: 0,
-    review_date: new Date(),
-    review_comment: '',
-    is_approved: false,
-    customer_id: '',
-    book_id: ''
-  };
-  private readonly reviewService: ReviewService = inject(ReviewService);
-  private formBuilder: FormBuilder = inject(FormBuilder);
-  protected reviewForm: FormGroup;
-  protected reviews: Review[] = [];
+  reviewForm: FormGroup;
+  reviews: Review[] = [];
 
-  constructor() {
-    this.reviewForm = this.buildForm;
+  constructor(private reviewService: ReviewService, private formBuilder: FormBuilder) {
+    this.reviewForm = this.formBuilder.group({
+      reviewRating: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
+      reviewComment: ['', Validators.required],
+      reviewDate: [new Date(), Validators.required], // Ensure the backend can handle the date format
+      isApproved: [false],
+    });
   }
 
   ngOnInit(): void {
     this.loadReviews();
-  }
-
-  get buildForm() {
-    return this.formBuilder.group({
-      review_rating: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
-      review_date: [new Date(), Validators.required],
-      review_comment: ['', Validators.required],
-      is_approved: [false],
-      customer_id: ['', Validators.required],
-      book_id: ['', Validators.required]
-    });
   }
 
   loadReviews(): void {
@@ -57,14 +42,16 @@ export class ReviewsComponent implements OnInit {
       this.reviewService.createReview(this.reviewForm.value).subscribe({
         next: (response) => {
           console.log('Review created successfully!', response);
-          alert('Datos enviados');
-          this.loadReviews(); // Recargar las reseñas después de la creación exitosa
+          alert('Review submitted successfully!');
+          this.loadReviews(); // Reload reviews after successful creation
         },
         error: (error) => {
           console.error('Error creating review', error);
-          alert('Error al enviar los datos');
+          alert('Error submitting review');
         }
       });
+    } else {
+      alert('Please fill out the form correctly.');
     }
   }
 }
