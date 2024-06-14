@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoanListComponent } from './loan-list/loan-list.component';
 import { LoanComponent } from './loan/loan.component';
-import { LoanComponent } from './loan/loan.component';
 
 
 @NgModule({
