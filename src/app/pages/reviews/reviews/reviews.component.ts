@@ -9,11 +9,18 @@ import { ReviewService } from '../../../services/reviews.service';
   styleUrls: ['./reviews.component.scss']
 })
 export class ReviewsComponent implements OnInit {
-  public review: Review = { rating: 0, comment: '', is_approved: false };
+  public review: Review = {
+    review_rating: 0,
+    review_date: new Date(),
+    review_comment: '',
+    is_approved: false,
+    customer_id: '',
+    book_id: ''
+  };
   private readonly reviewService: ReviewService = inject(ReviewService);
   private formBuilder: FormBuilder = inject(FormBuilder);
   protected reviewForm: FormGroup;
-  reviews: Review[] = [];
+  protected reviews: Review[] = [];
 
   constructor() {
     this.reviewForm = this.buildForm;
@@ -21,14 +28,16 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadReviews();
-    this.reviewForm.patchValue(this.review);
   }
 
   get buildForm() {
     return this.formBuilder.group({
-      rating: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
-      comment: ['', Validators.required],
-      is_approved: [false]
+      review_rating: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
+      review_date: [new Date(), Validators.required],
+      review_comment: ['', Validators.required],
+      is_approved: [false],
+      customer_id: ['', Validators.required],
+      book_id: ['', Validators.required]
     });
   }
 

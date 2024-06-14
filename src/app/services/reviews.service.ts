@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
- 
+
   private readonly httpClient = inject(HttpClient);
   private API_URL_REVIEW = `${environment.API_URL}reviews`;
 

@@ -10,9 +10,16 @@ const routes: Routes = [
     path: 'common',
     loadChildren: () => import('./common/common.module').then(m => m.CommonModule)
   },
+  {path: 'customer',
+    loadChildren: () => import('./pages/customer/customer.module').then(m => m.CustomerModule)
+  },
   {
     path: 'administrators',
     loadChildren: () => import('./pages/administrator/administrator.module').then(m => m.AdministratorModule),
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./pages/reviews/reviews.module').then(m => m.ReviewsModule),
   },
   {
     path:'loans',
