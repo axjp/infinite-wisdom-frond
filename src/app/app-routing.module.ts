@@ -15,8 +15,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/administrator/administrator.module').then(m => m.AdministratorModule),
   },
   {
-    path: 'reviews',
-    loadChildren: () => import('./pages/reviews/reviews.module').then(m => m.ReviewsModule),
+    path: 'loans',
+    loadChildren: () => import('./pages/loan/loan.module').then(m => m.LoanModule),
   },
   {
     path: '**', redirectTo: 'common/not-found'
