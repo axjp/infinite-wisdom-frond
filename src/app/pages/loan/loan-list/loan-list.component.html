@@ -1,26 +1,13 @@
-<p>Table is just a mapping of objects to table rows with <code>*ngFor</code></p>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Loan Date</th>
-      <th scope="col">Return Days</th>
-      <th scope="col">Email</th>
-      <th scope="col">State</th>
-      <th scope="col">Eliminar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let loan of loans; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ loan.loanDate | date }}</td>
-      <td>{{ loan.returnDate }}</td>
-      <td>{{ loan.email }}</td>
-      <td>{{ loan.state ? 'Active' : 'Inactive' }}</td>
-      <td>
-        <button class="btn btn-danger" (click)="deleteLoan(loan.idloan)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h2>List of Loans</h2>
+  <!-- Loans List -->
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let loan of loans">
+      <span>Loan Date: {{ loan.loanDate | date }}</span><br>
+      <span>Return Date: {{ loan.returnDate }}</span><br>
+      <span>Email: {{ loan.email }}</span><br>
+      <span>Status: {{ loan.state ? 'Active' : 'Inactive' }}</span><br>
+      <button class="btn btn-danger btn-sm" (click)="deleteLoan(loan.idloan)">Delete</button>
+    </li>
+  </ul>
+</div>

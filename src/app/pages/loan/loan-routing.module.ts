@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoanComponent } from './loan/loan.component';
 import { LoanListComponent } from './loan-list/loan-list.component';
+import { LoanComponent } from './loan/loan.component';
 
 const routes: Routes = [
-  { path: 'juan', component: LoanComponent },
-  { path: '', component: LoanListComponent },
-  { path: '', component: LoanComponent },
-  { path: 'loanlist', component: LoanListComponent },
+  { path: 'loan-list', component: LoanListComponent },
+  { path: 'loan', component: LoanComponent },
 ];
 
 @NgModule({
