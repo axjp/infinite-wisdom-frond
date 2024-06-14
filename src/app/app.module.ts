@@ -16,7 +16,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
     NgbModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
