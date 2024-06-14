@@ -11,7 +11,7 @@ import { BookProductComponent } from './book-product/book-product.component';
   declarations: [
     BookFormComponent,
     BookListComponent,
-    BookProductComponent
+    BookProductComponent,
   ],
   imports: [
     CommonModule,
