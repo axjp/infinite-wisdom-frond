@@ -6,16 +6,20 @@ const routes: Routes = [
     path: 'books',
     loadChildren: () => import('./pages/book/book.module').then(m => m.BookModule),
   },
-  { 
-    path: 'common', 
-    loadChildren: () => import('./common/common.module').then(m => m.CommonModule) 
+  {
+    path: 'common',
+    loadChildren: () => import('./common/common.module').then(m => m.CommonModule)
   },
   {
     path: 'administrators',
     loadChildren: () => import('./pages/administrator/administrator.module').then(m => m.AdministratorModule),
   },
-  { 
-    path: '**', redirectTo: 'common/not-found' 
+  {
+    path: 'loans',
+    loadChildren: () => import('./pages/loan/loan.module').then(m => m.LoanModule),
+  },
+  {
+    path: '**', redirectTo: 'common/not-found'
   },
 ];
 
