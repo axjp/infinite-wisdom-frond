@@ -1,0 +1,10 @@
+<div>
+  <h2>Reviews List</h2>
+  <ul>
+    <li *ngFor="let review of reviews">
+      <strong>Rating:</strong> {{ review.rating }}<br>
+      <strong>Comment:</strong> {{ review.comment }}<br>
+      <strong>Approved:</strong> {{ review.is_approved ? 'Yes' : 'No' }}<br>
+    </li>
+  </ul>
+</div>

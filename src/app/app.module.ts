@@ -16,15 +16,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
 
   imports: [
-    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-   
+
     NgbModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

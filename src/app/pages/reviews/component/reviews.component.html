@@ -1,0 +1,20 @@
+<div>
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="rating">Rating</label>
+      <input id="rating" formControlName="rating" type="number" min="1" max="5">
+    </div>
+
+    <div>
+      <label for="comment">Comment</label>
+      <textarea id="comment" formControlName="comment"></textarea>
+    </div>
+
+    <div>
+      <label for="is_approved">Is Approved</label>
+      <input id="is_approved" formControlName="is_approved" type="checkbox">
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
