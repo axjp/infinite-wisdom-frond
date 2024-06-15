@@ -5,7 +5,7 @@ import { LoanComponent } from './component/loan.component';
 
 const routes: Routes = [
   { path: 'loans-list', component: LoanListComponent },
-  { path: 'loans', component: LoanComponent }
+  { path: 'loans', component: LoanComponent },
 ];
 
 @NgModule({
