@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>List of Loans</h2>
+  <!-- Loans List -->
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let loan of loans">
+      <span>Loan Date: {{ loan.loanDate | date }}</span><br>
+      <span>Return Date: {{ loan.returnDate }}</span><br>
+      <span>Email: {{ loan.email }}</span><br>
+      <span>Status: {{ loan.state ? 'Active' : 'Inactive' }}</span><br>
+      <button class="btn btn-danger btn-sm" (click)="deleteLoan(loan.idloan)">Delete</button>
+    </li>
+  </ul>
+</div>

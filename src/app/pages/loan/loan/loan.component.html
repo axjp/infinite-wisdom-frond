@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>List of Loans</h2>
+
+  <!-- Loan Form -->
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="loan_date">Loan Date:</label>
+      <input type="date" id="loan_date" formControlName="loan_date" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="return_date">Return Date:</label>
+      <input type="number" id="return_date" formControlName="return_date" class="form-control">
+      <div *ngIf="isReturnDateInvalid()" class="text-danger">
+        Maximum return days exceeded.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="state">State:</label>
+      <select id="state" formControlName="state" class="form-control">
+        <option [ngValue]="true">Active</option>
+        <option [ngValue]="false">Inactive</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="loanForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+
+  <hr>
+</div>
