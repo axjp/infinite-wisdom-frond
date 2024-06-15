@@ -5,17 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
-import { AdministratorModule } from './pages/administrator/administrator.module';
-=======
-import { LoginComponent } from './pages/login/login/login.component';
->>>>>>> 4ccf2d8432d6b75864fcab668698a3251241a1ee
-
+import { ReviewsModule } from './pages/reviews/reviews.module'; // Importa el módulo de reviews
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -24,12 +18,7 @@ import { LoginComponent } from './pages/login/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-<<<<<<< HEAD
-    AdministratorModule
-    
-=======
-
->>>>>>> 4ccf2d8432d6b75864fcab668698a3251241a1ee
+    ReviewsModule // Agrega el módulo de reviews
   ],
   providers: [],
   bootstrap: [AppComponent]

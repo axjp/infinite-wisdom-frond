@@ -1,56 +1,22 @@
-<div class="container mt-4">
-  <!-- Formulario para crear nuevas reseñas -->
+<div class="container">
+  <h2>Create Review</h2>
   <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="reviewRating">Rating</label>
-      <input
-        id="reviewRating"
-        formControlName="reviewRating"
-        type="number"
-        min="1"
-        max="5"
-        class="form-control"
-      />
+    <div class="mb-3">
+      <label for="reviewComment" class="form-label">Comment</label>
+      <input id="reviewComment" class="form-control" formControlName="reviewComment">
     </div>
-
-    <div class="form-group">
-      <label for="reviewComment">Comment</label>
-      <textarea
-        id="reviewComment"
-        formControlName="reviewComment"
-        class="form-control"
-        rows="3"
-      ></textarea>
+    <div class="mb-3">
+      <label for="reviewRating" class="form-label">Rating</label>
+      <input id="reviewRating" type="number" class="form-control" formControlName="reviewRating">
     </div>
-
-    <div class="form-group form-check">
-      <input
-        id="isApproved"
-        formControlName="isApproved"
-        type="checkbox"
-        class="form-check-input"
-      />
-      <label for="isApproved" class="form-check-label">Is Approved</label>
+    <div class="mb-3">
+      <label for="reviewDate" class="form-label">Date</label>
+      <input id="reviewDate" type="date" class="form-control" formControlName="reviewDate">
     </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3">
+      <label for="isApproved" class="form-label">Approved</label>
+      <input id="isApproved" type="checkbox" class="form-check-input" formControlName="isApproved">
+    </div>
+    <button type="submit" class="btn btn-primary">Create Review</button>
   </form>
-
-  <!-- Lista de reseñas existentes -->
-  <div *ngIf="reviews.length > 0" class="mt-4">
-    <h3>Reviews:</h3>
-    <div *ngFor="let review of reviews" class="card mt-3">
-      <div class="card-body">
-        <h5 class="card-title">Rating: {{ review.review_rating }}</h5>
-        <p class="card-text">Comment: {{ review.review_comment }}</p>
-        <p class="card-text">Date: {{ review.review_date | date }}</p>
-        <p class="card-text">Approved: {{ review.is_approved ? 'Yes' : 'No' }}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mensaje si no hay reseñas cargadas -->
-  <div *ngIf="reviews.length === 0" class="mt-4">
-    <p>No reviews available.</p>
-  </div>
 </div>

@@ -1,10 +1,12 @@
-<div>
-  <h2>Reviews List</h2>
-  <ul>
-    <li *ngFor="let review of reviews">
-      <strong>Rating:</strong> {{ review.review_rating }}<br>
-      <strong>Comment:</strong> {{ review.review_comment }}<br>
-      <strong>Approved:</strong> {{ review.is_approved ? 'Yes' : 'No' }}<br>
+<div class="container">
+  <h1 class="my-4">Review List</h1>
+  <ul class="list-group">
+    <li *ngFor="let review of reviews" class="list-group-item">
+      <p><strong>Comment:</strong> {{ review.reviewComment }}</p>
+      <p><strong>Rating:</strong> {{ review.reviewRating }}/5</p>
+      <p><strong>Date:</strong> {{ review.reviewDate | date }}</p>
+      <p><strong>Approved:</strong> {{ review.isApproved }}</p>
+      <button class="btn btn-danger" (click)="deleteReview(review.idreview)">Delete</button>
     </li>
   </ul>
 </div>

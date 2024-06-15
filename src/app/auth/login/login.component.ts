@@ -1,3 +1,4 @@
+/*
 import {Component, inject} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 
@@ -25,4 +26,4 @@ export class LoginComponent {
     this.authService.getProfile().subscribe();
   }
 }
-
+*/

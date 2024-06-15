@@ -1,3 +1,4 @@
+/*
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministratorFormComponent } from './administrator-form/administrator-form.component';
@@ -12,12 +13,12 @@ const routes: Routes = [
     path:'form',
     component:AdministratorFormComponent
   },
-  
-];  
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AdministratorRoutingModule { }
-
+*/

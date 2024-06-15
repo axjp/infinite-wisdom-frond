@@ -1,3 +1,4 @@
+/*
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,3 +21,4 @@ import { AdministratorListComponent } from './administrator-list/administrator-l
   ]
 })
 export class AdministratorModule { }
+*/

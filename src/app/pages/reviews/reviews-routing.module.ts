@@ -4,8 +4,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewsListComponent } from './reviews-list/reviews-list.component';
 
 const routes: Routes = [
-  { path: '', component: ReviewsComponent },
-  { path: 'reviewslist', component: ReviewsListComponent }
+  { path: 'reviewlist', component: ReviewsListComponent },
+  { path: '', component: ReviewsComponent }
 ];
 
 @NgModule({

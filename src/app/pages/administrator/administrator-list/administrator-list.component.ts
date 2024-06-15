@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+/*import { Component, inject } from '@angular/core';
 import { AdministratorService } from '../../../services/administrator.service';
 import { AdministratorI } from '../../../models/administrator.interface';
 
 @Component({
   selector: 'app-administrator-list',
   templateUrl: './administrator-list.component.html',
-  styleUrls: ['./administrator-list.component.scss'] 
+  styleUrls: ['./administrator-list.component.scss']
 })
 export class AdministratorListComponent {
   private readonly administratorService = inject(AdministratorService);
@@ -28,7 +28,7 @@ export class AdministratorListComponent {
     this.administratorService.createAdministrator({}).subscribe(
       response => {
         console.log(response);
-         
+
       });
   }
 
@@ -36,7 +36,7 @@ export class AdministratorListComponent {
     this.administratorService.updateAdministrator('1', {}).subscribe(
       response => {
         console.log(response);
-        
+
       });
   }
 
@@ -44,7 +44,7 @@ export class AdministratorListComponent {
     this.administratorService.deleteAdministrator('1').subscribe(
       response => {
         console.log(response);
-        
+
       });
   }
 
@@ -55,3 +55,4 @@ export class AdministratorListComponent {
       });
   }
 }
+*/

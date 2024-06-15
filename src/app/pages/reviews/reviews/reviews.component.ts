@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { ReviewService } from '../../../services/review.service';
-import { Review } from '../../../models/review.model';
 import { ReviewService } from '../../../services/reviews.service';
+import { Review } from '../../../models/review.model';
 
 @Component({
   selector: 'app-reviews',
@@ -11,47 +10,28 @@ import { ReviewService } from '../../../services/reviews.service';
 })
 export class ReviewsComponent implements OnInit {
   reviewForm: FormGroup;
-  reviews: Review[] = [];
 
-  constructor(private reviewService: ReviewService, private formBuilder: FormBuilder) {
-    this.reviewForm = this.formBuilder.group({
-      reviewRating: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
+  constructor(
+    private fb: FormBuilder,
+    private reviewService: ReviewService
+  ) {
+    this.reviewForm = this.fb.group({
       reviewComment: ['', Validators.required],
-      reviewDate: [new Date(), Validators.required], // Ensure the backend can handle the date format
-      isApproved: [false],
+      reviewRating: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
+      reviewDate: ['', Validators.required],
+      isApproved: [false, Validators.required]
     });
   }
 
-  ngOnInit(): void {
-    this.loadReviews();
-  }
-
-  loadReviews(): void {
-    this.reviewService.getReviews().subscribe({
-      next: (reviews) => {
-        this.reviews = reviews;
-      },
-      error: (error) => {
-        console.error('Error fetching reviews:', error);
-      }
-    });
-  }
+  ngOnInit(): void { }
 
   onSubmit(): void {
     if (this.reviewForm.valid) {
-      this.reviewService.createReview(this.reviewForm.value).subscribe({
-        next: (response) => {
-          console.log('Review created successfully!', response);
-          alert('Review submitted successfully!');
-          this.loadReviews(); // Reload reviews after successful creation
-        },
-        error: (error) => {
-          console.error('Error creating review', error);
-          alert('Error submitting review');
-        }
-      });
-    } else {
-      alert('Please fill out the form correctly.');
+      const newReview: Review = this.reviewForm.value;
+      this.reviewService.createReview(newReview).subscribe(
+        () => console.log('Review created successfully'),
+        (error) => console.error('Error creating review:', error)
+      );
     }
   }
 }
