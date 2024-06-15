@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoanService } from '../../../services/loan.service';
 import { LoanI } from '../../../models/loan.interface';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-loan-list',
-  templateUrl: './loan-list.component.html',
-  styleUrls: ['./loan-list.component.scss']
+  selector: 'app-loan',
+  templateUrl: './loan.component.html',
+  styleUrls: ['./loan.component.scss']
 })
-export class LoanListComponent implements OnInit {
+export class LoanComponent implements OnInit {
   loans: LoanI[] = [];
   loanForm: FormGroup;
 
@@ -22,10 +22,10 @@ export class LoanListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLoans();
+    this.fetchLoans();
   }
 
-  getLoans(): void {
+  fetchLoans(): void {
     this.loanService.findLoans().subscribe(
       (response: LoanI[]) => {
         this.loans = response;
@@ -45,13 +45,18 @@ export class LoanListComponent implements OnInit {
         state: !!this.loanForm.value.state, // Convertir a booleano asegurando que no sea undefined
       };
 
+      // Agregar el nuevo préstamo a la lista local antes de enviar al servidor
+      this.loans.push(newLoan);
+
+      // Enviar el nuevo préstamo al servicio para crearlo en el servidor
       this.loanService.createLoan(newLoan).subscribe(
         () => {
-          this.getLoans(); // Actualizar la lista después de crear el préstamo
           this.loanForm.reset(); // Reiniciar el formulario después de enviar
         },
         (error) => {
           console.error('Error creating loan:', error);
+          // En caso de error, remover el préstamo agregado localmente
+          this.loans.pop();
         }
       );
     }
@@ -61,7 +66,7 @@ export class LoanListComponent implements OnInit {
     if (idloan) {
       this.loanService.deleteLoan(idloan).subscribe(
         () => {
-          this.getLoans(); // Actualizar la lista después de eliminar el préstamo
+          this.fetchLoans(); // Actualizar la lista después de eliminar el préstamo
         },
         (error) => {
           console.error('Error deleting loan:', error);
@@ -73,14 +78,5 @@ export class LoanListComponent implements OnInit {
   isReturnDateInvalid(): boolean {
     const returnDateControl = this.loanForm.get('return_date');
     return !!returnDateControl && returnDateControl?.touched && returnDateControl.invalid;
-  }
-
-  validateReturnDays(): void {
-    const returnDateControl = this.loanForm.get('return_date');
-    if (returnDateControl && returnDateControl.value > 10) {
-      returnDateControl.setErrors({ max: true });
-    } else {
-      returnDateControl?.setErrors(null);
-    }
   }
 }

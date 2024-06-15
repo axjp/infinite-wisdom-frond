@@ -1,1 +1,115 @@
-<p>book-form works!</p>
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <img src="assets\img\logo.png" alt="Logo Sabiduria Infinita">
+          <h2>Comparte tu libro</h2>
+          <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="mb-3">
+              <label for="title" class="form-label">Título del Libro</label>
+              <input type="text" class="form-control" id="title" formControlName="title"
+                placeholder="Ingresa el nombre del libro" aria-describedby="titleHelp">
+              {{form.controls['title'].errors|json}}
+              @if(form.controls['title'].hasError('required') && form.controls['title'].touched)
+              {
+              <small>* Campo Requerido</small>
+              }
+            </div>
+  
+            <div class="mb-3">
+              <label for="imageFile" class="custom-orange-label form-label">IMAGEN</label>
+              <input type="file" (change)="getFile($event, 'image')" class="form-control" id="imageFile" formControlName="imageFile"
+                placeholder="Seleccione archivo de imagen" accept="image/*" aria-describedby="imageHelpId">
+              @if(form.controls['imageFile'].hasError('required') && form.controls['imageFile'].touched)
+              {
+                <small>* Campo Requerido</small>
+              }
+            </div>
+  
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nameauthor" class="form-label">Nombre del Autor</label>
+                <input type="text" class="form-control" id="nameauthor" formControlName="nameauthor"
+                  placeholder="Ingresa el nombre del autor del libro" aria-describedby="nameauthorHelp">
+                {{form.controls['nameauthor'].errors|json}}
+  
+                @if(form.controls['nameauthor'].hasError('required') && form.controls['nameauthor'].touched)
+                {
+                <small>* Campo Requerido</small>
+                }
+              </div>
+  
+              <div class="col-md-6 mb-3">
+                <label for="lastnameauthor" class="form-label">Apellido del Autor</label>
+                <input type="text" class="form-control" id="lastnameauthor" formControlName="lastnameauthor"
+                  placeholder="Ingresa el apellido del autor del libro" aria-describedby="lastnameauthorHelp">
+                @if(form.controls['lastnameauthor'].hasError('required') && form.controls['lastnameauthor'].touched)
+                {
+                <small>* Campo Requerido</small>
+                }
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="year" class="form-label">Fecha de Publicación</label>
+              <input type="number" class="form-control" id="year" formControlName="year"
+                placeholder="Ingresa el año de publicación del libro" aria-describedby="yearHelp">
+              @if(form.controls['year'].hasError('required') && form.controls['year'].touched)
+              {
+              <small>* Campo Requerido</small>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="idcategory" class="form-label">Categorias</label>
+              <select class="form-control" id="idcategory" formControlName="idcategory" multiple
+              >
+                <option value="null" disabled selected>Selecciona la categoria</option>
+                @for(category of categories; track $index){
+                <option value="{{category.idcategory}}">{{category.namecategory}}</option>
+                }
+              </select>
+              <span>Nota:Si desea elegir 2 categorias tenga aplastado la tecla CTRL</span>
+              {{form.controls['idcategory'].value|json}}
+              @if(form.controls['idcategory'].hasError('required')&& form.controls['idcategory'].touched)
+              {
+              <small>* Campo Requerido</small>
+              }
+            </div>
+  
+            <div class="mb-3">
+              <label for="editorial" class="form-label">Editorial</label>
+              <input type="text" class="form-control" id="editorial" formControlName="editorial"
+                placeholder="Ingresa la editorial del libro" aria-describedby="editorialHelp">
+              @if(form.controls['editorial'].hasError('required') && form.controls['editorial'].touched)
+              {
+              <small>* Campo Requerido</small>
+              }
+            </div>
+  
+            <div class="mb-3">
+              <label for="description" class="form-label">Descripción</label>
+              <textarea class="form-control" id="description" formControlName="description"
+                placeholder="Ingresa una descripción del libro" aria-describedby="descriptionHelp"></textarea>
+              @if(form.controls['description'].hasError('required') && form.controls['description'].touched)
+              {
+              <small>* Campo Requerido</small>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="pdfFile" class="custom-orange-label form-label">Archivo PDF</label>
+              <input type="file" (change)="getFile($event, 'pdf')" class="form-control" id="pdfFile" formControlName="pdfFile"
+                placeholder="Seleccione archivo PDF" aria-describedby="fileHelpId">
+              @if(form.controls['pdfFile'].hasError('required') && form.controls['pdfFile'].touched)
+              {
+                <small>* Campo Requerido</small>
+              }
+            </div>
+        
+            <button  class="btn btn-success" >Agregar libro</button>
+     
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

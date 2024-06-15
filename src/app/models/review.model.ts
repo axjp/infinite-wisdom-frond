@@ -1,8 +1,7 @@
-
 export interface Review {
-  idreview?: number;
-  rating: number;
-  comment: string;
-  is_approved: boolean;
- 
+  idreview: string;
+  reviewRating: number;
+  reviewDate: Date;
+  reviewComment: string;
+  isApproved: boolean;
 }

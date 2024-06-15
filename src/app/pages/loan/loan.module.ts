@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { LoanRoutingModule } from './loan-routing.module';
 import { LoanListComponent } from './loan-list/loan-list.component';
-import { LoanComponent } from './component/loan.component';
+import { LoanComponent } from './loan/loan.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,9 @@ import { LoanComponent } from './component/loan.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    HttpClientModule,
+    LoanRoutingModule
+  ]
 })
 export class LoanModule { }
