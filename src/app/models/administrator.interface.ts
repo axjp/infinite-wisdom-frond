@@ -1,0 +1,9 @@
+export interface AdministratorI {
+    name?: string;
+    lastName?: string;
+    cellphone?: number;
+    birthdate?: Date;
+    state?:boolean;
+    email?:string;
+    password?:string;
+  }
