@@ -5,11 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReviewsModule } from './pages/reviews/reviews.module'; // Importa el módulo de reviews
+import { ReviewsModule } from './pages/reviews/reviews.module';
+import { ProtectedComponent } from './pages/protected/protected.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProtectedComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +21,8 @@ import { ReviewsModule } from './pages/reviews/reviews.module'; // Importa el m�
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ReviewsModule // Agrega el módulo de reviews
+    ReviewsModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

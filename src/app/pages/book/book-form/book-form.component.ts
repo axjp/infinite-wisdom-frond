@@ -52,17 +52,17 @@ export class BookFormComponent {
     if (this.form.status === 'VALID') {
       const formData = this.form.value;
       const categoriesString = this.form.controls['idcategory'].value.join(',');
-  
+
       const body = new FormData();
-  
+
       if (this.imageTmp) {
         body.append('myImage', this.imageTmp.fileRaw, this.imageTmp.fileName);
       }
-  
+
       if (this.fileTmp) {
         body.append('myFile', this.fileTmp.fileRaw, this.fileTmp.fileName);
       }
-  
+
       body.append('title',this.form.controls['title'].value)
       body.append('nameauthor',this.form.controls['nameauthor'].value)
       body.append('lastnameauthor',this.form.controls['lastnameauthor'].value)
@@ -71,18 +71,18 @@ export class BookFormComponent {
       body.append('description',this.form.controls['description'].value)
       body.append('editorial',this.form.controls['editorial'].value)
       body.append('imageFile',this.form.controls['imageFile'].value)
-     
-      const url = 'http://localhost:3000/upload';      
+
+      const url = 'http://localhost:3000/upload';
       this.httpClient.post(url, body).subscribe(response => {
         alert(response);
-        
+
       });
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
-  
+
   update() {
     const url = 'http://localhost:3000/upload/' + this.idbook;
     this.httpClient.put(url, this.form.value).subscribe(response => {

@@ -1,0 +1,5 @@
+<div *ngIf="profile">
+  <h1>Bienvenido, {{ profile.name }}</h1>
+  <p>Email: {{ profile.email }}</p>
+  <button (click)="logout()">Cerrar sesión</button>
+</div>
