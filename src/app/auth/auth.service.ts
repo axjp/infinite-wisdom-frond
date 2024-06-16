@@ -16,7 +16,7 @@ export class AuthService {
   private token: string | null = null;
 
   login(payload: AuthRequestI): Observable<AuthResponseI> {
-    return this.httpClient.post<AuthResponseI>(`${this.API_URL_AUTH}/login`, payload).pipe(
+    return this.httpClient.post<AuthResponseI>(`${this.API_URL_AUTH}/logins`, payload).pipe(
       tap(response => {
         this.token = response.token;
         localStorage.setItem('token', this.token);
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   getProfile(): Observable<ProfileI> {
-    return this.httpClient.get<ProfileI>(`${this.API_URL_AUTH}/profile`);
+    return this.httpClient.get<ProfileI>(`${this.API_URL_AUTH}/logins`);
   }
 
   isAuthenticated(): boolean {
