@@ -8,7 +8,7 @@ import { LoanI } from '../models/loan.interface';
   providedIn: 'root'
 })
 export class LoanService {
-  private API_URL = environment.API_URL + 'loans/';
+  private API_URL = environment.API_URL + '/loans';
 
   constructor(private http: HttpClient) {}
 

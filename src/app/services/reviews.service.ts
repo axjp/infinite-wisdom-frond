@@ -8,7 +8,7 @@ import { Review } from './../models/review.model';
   providedIn: 'root'
 })
 export class ReviewService {
-  private apiUrl = environment.API_URL + 'review';
+  private apiUrl = environment.API_URL + '/review';
 
   constructor(private http: HttpClient) {
     console.log('API URL:', this.apiUrl); // Añadir registro para verificar la URL
