@@ -1,6 +1,8 @@
 import { Component,inject } from '@angular/core';
 import { AbstractControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdministratorService } from '../../../services/administrator.service'; 
+import { ActivatedRoute } from '@angular/router';
+import { AdministratorI } from '../../../models/administrator.interface';
 
 @Component({
   selector: 'app-administrator-form',
@@ -11,8 +13,17 @@ export class AdministratorFormComponent {
   protected form: FormGroup;
   private readonly formBuillder=inject( FormBuilder) ; 
   private readonly administratorService =inject(AdministratorService);
-  constructor() {
+  protected idAdministrator:any=null;
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  protected administrator:AdministratorI={};
+
+  constructor() 
+  {
     this.form = this.buildForm;
+    this.route.params.subscribe(params => {
+      this.idAdministrator = params['idAdministrator'];
+      if (this.idAdministrator) {
+        this.findAdministratorOne(this.idAdministrator);}});
   }
 
   get buildForm(): FormGroup {
@@ -51,7 +62,7 @@ export class AdministratorFormComponent {
   // Llevar los datos al backend
   save() {
     if (this.form.status === 'VALID') {
-      this.administratorService.register(this.form.value).subscribe(
+      this.administratorService.createAdministrator(this.form.value).subscribe(
         response => {
           alert('Registro realizado con éxito');
         });
@@ -60,4 +71,8 @@ export class AdministratorFormComponent {
       alert('Por favor, completa los campos correctamente.');
     }
   }
+  findAdministratorOne(idAdministrator: string) {
+    this.administratorService.findAdministratorOne(idAdministrator).subscribe(response => {
+      this.administrator = response;
+      this.form.patchValue(this.administrator);});}
 }

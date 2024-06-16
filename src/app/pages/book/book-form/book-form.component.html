@@ -1,115 +1,181 @@
-<!--<div class="container d-flex align-items-center justify-content-center">
-    <div class="col col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <img src="assets\img\logo.png" alt="Logo Sabiduria Infinita">
-          <h2>Comparte tu libro</h2>
-          <form [formGroup]="form" (ngSubmit)="save()">
-            <div class="mb-3">
-              <label for="title" class="form-label">Título del Libro</label>
-              <input type="text" class="form-control" id="title" formControlName="title"
-                placeholder="Ingresa el nombre del libro" aria-describedby="titleHelp">
-              {{form.controls['title'].errors|json}}
-              @if(form.controls['title'].hasError('required') && form.controls['title'].touched)
-              {
-              <small>* Campo Requerido</small>
-              }
-            </div>
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="col col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <img src="assets\img\logo.png" alt="Logo Sabiduria Infinita">
+        <form [formGroup]="form">
+          <h2 class="card-title text-center">Agrega el Libro</h2>
+          <div class="mb-3">
+            <label for="title" class="form-label">Título del Libro</label>
+            <input class="form-control" type="text" id="title" formControlName="title">
+          </div>
+          @if (titleField.errors ) {
+          @if (titleField.errors['required'] && titleField.touched) {
+          <span>* El campo titulo es requerido</span>
+          }
+          @if (titleField.errors['minlength'] && titleField.dirty) {
+          <span>El campo titulo debe contener al menos 4 caracteres</span>
+          }
+          @if (titleField.errors['maxlength']&& titleField.dirty ) {
+          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
+          }
+          }
 
-            <div class="mb-3">
-              <label for="imageFile" class="custom-orange-label form-label">IMAGEN</label>
-              <input type="file" (change)="getFile($event, 'image')" class="form-control" id="imageFile" formControlName="imageFile"
-                placeholder="Seleccione archivo de imagen" accept="image/*" aria-describedby="imageHelpId">
-              @if(form.controls['imageFile'].hasError('required') && form.controls['imageFile'].touched)
-              {
-                <small>* Campo Requerido</small>
-              }
-            </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Imagen</label>
+            <input class="form-control" type="text" id="image" formControlName="image">
+          </div>
+          @if (imageField.errors ) {
+          @if (imageField.errors['required'] && imageField.touched) {
+          <span>* El campo titulo es requerido</span>
+          }
+          @if (imageField.errors['minlength'] && imageField.dirty) {
+          <span>El campo titulo debe contener al menos 4 caracteres</span>
+          }
+          @if (imageField.errors['maxlength']&& imageField.dirty ) {
+          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
+          }
+          }
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="nameauthor" class="form-label">Nombre del Autor</label>
-                <input type="text" class="form-control" id="nameauthor" formControlName="nameauthor"
-                  placeholder="Ingresa el nombre del autor del libro" aria-describedby="nameauthorHelp">
-                {{form.controls['nameauthor'].errors|json}}
+          <div class="mb-3">
+            <label for="nameauthor" class="form-label">Nombre del Autor</label>
+            <input class="form-control" type="text" id="nameauthor" formControlName="nameauthor">
+          </div>
+          @if (nameauthorField.errors ) {
+          @if (nameauthorField.errors['required'] && nameauthorField.touched) {
+          <span>* El campo Nombre del Autor es requerido</span>
+          }
+          @if (nameauthorField.errors['minlength'] && nameauthorField.dirty) {
+          <span>El campo Nombre del Autor debe contener al menos 4 caracteres</span>
+          }
+          @if (nameauthorField.errors['maxlength']&& nameauthorField.dirty ) {
+          <span>* El campo Nombre del Autor debe contener al maximmo 25 caracteres</span>
+          }
+          }
+          <div class="mb-3">
+            <label for="lastnameauthor" class="form-label">Apellidor del Autor</label>
+            <input class="form-control" type="text" id="lastnameauthor" formControlName="lastnameauthor">
+          </div>
+          @if (lastnameauthorField.errors ) {
+          @if (lastnameauthorField.errors['required'] && lastnameauthorField.touched) {
+          <span>* El campo tiApellidor del Autortulo es requerido</span>
+          }
+          @if (lastnameauthorField.errors['minlength'] && lastnameauthorField.dirty) {
+          <span>El campo Apellidor del Autor debe contener al menos 4 caracteres</span>
+          }
+          @if (lastnameauthorField.errors['maxlength']&& lastnameauthorField.dirty ) {
+          <span>* El campo Apellidor del Autor debe contener al maximmo 25 caracteres</span>
+          }
+          }
 
-                @if(form.controls['nameauthor'].hasError('required') && form.controls['nameauthor'].touched)
-                {
-                <small>* Campo Requerido</small>
-                }
-              </div>
+          <div class="mb-3">
+            <label for="publicationDate" class="form-label">Fecha de publicacion</label>
+            <input type="date" id="publicationDate" formControlName="publicationDate" class="form-control">
+          </div>
+          @if (publicationDateField.errors && publicationDateField.touched ) {
+          @if (publicationDateField.errors['required']) {
+          <span>* Seleccione la fecha de publicaion del ibro</span>
+          }
+          }
 
-              <div class="col-md-6 mb-3">
-                <label for="lastnameauthor" class="form-label">Apellido del Autor</label>
-                <input type="text" class="form-control" id="lastnameauthor" formControlName="lastnameauthor"
-                  placeholder="Ingresa el apellido del autor del libro" aria-describedby="lastnameauthorHelp">
-                @if(form.controls['lastnameauthor'].hasError('required') && form.controls['lastnameauthor'].touched)
-                {
-                <small>* Campo Requerido</small>
-                }
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="edition" class="form-label">Numero de Edicion</label>
+            <input type="number" id="edition" formControlName="edition" class="form-control">
+          </div>
+          @if (editionField.errors ) {
+          @if (editionField.errors['required']&& editionField.touched) {
+          <span>* Ingrese la Edicion</span>
+          }
+          @if (editionField.errors['min'] && editionField.dirty) {
+          <span>* El precio no puede ser menor que cero</span>
+          }
 
-            <div class="mb-3">
-              <label for="year" class="form-label">Fecha de Publicación</label>
-              <input type="number" class="form-control" id="year" formControlName="year"
-                placeholder="Ingresa el año de publicación del libro" aria-describedby="yearHelp">
-              @if(form.controls['year'].hasError('required') && form.controls['year'].touched)
-              {
-              <small>* Campo Requerido</small>
-              }
-            </div>
-            <div class="mb-3">
-              <label for="idcategory" class="form-label">Categorias</label>
-              <select class="form-control" id="idcategory" formControlName="idcategory" multiple
-              >
-                <option value="null" disabled selected>Selecciona la categoria</option>
-                @for(category of categories; track $index){
-                <option value="{{category.idcategory}}">{{category.namecategory}}</option>
-                }
-              </select>
-              <span>Nota:Si desea elegir 2 categorias tenga aplastado la tecla CTRL</span>
-              {{form.controls['idcategory'].value|json}}
-              @if(form.controls['idcategory'].hasError('required')&& form.controls['idcategory'].touched)
-              {
-              <small>* Campo Requerido</small>
-              }
-            </div>
+          }
 
-            <div class="mb-3">
-              <label for="editorial" class="form-label">Editorial</label>
-              <input type="text" class="form-control" id="editorial" formControlName="editorial"
-                placeholder="Ingresa la editorial del libro" aria-describedby="editorialHelp">
-              @if(form.controls['editorial'].hasError('required') && form.controls['editorial'].touched)
-              {
-              <small>* Campo Requerido</small>
-              }
-            </div>
+          <div class="mb-3">
+            <label for="editorial" class="form-label">Editorial</label>
+            <input class="form-control" type="text" id="editorial" formControlName="editorial">
+          </div>
+          @if (editorialField.errors ) {
+          @if (editorialField.errors['required'] && editorialField.touched) {
+          <span>* El campo Editorial es requerido</span>
+          }
+          @if (editorialField.errors['minlength'] && editorialField.dirty) {
+          <span>El campo Editorial debe contener al menos 4 caracteres</span>
+          }
+          @if (editorialField.errors['maxlength']&& editorialField.dirty ) {
+          <span>* El campo Editorial debe contener al maximmo 50 caracteres</span>
+          }
+          }
 
-            <div class="mb-3">
-              <label for="description" class="form-label">Descripción</label>
-              <textarea class="form-control" id="description" formControlName="description"
-                placeholder="Ingresa una descripción del libro" aria-describedby="descriptionHelp"></textarea>
-              @if(form.controls['description'].hasError('required') && form.controls['description'].touched)
-              {
-              <small>* Campo Requerido</small>
-              }
-            </div>
-            <div class="mb-3">
-              <label for="pdfFile" class="custom-orange-label form-label">Archivo PDF</label>
-              <input type="file" (change)="getFile($event, 'pdf')" class="form-control" id="pdfFile" formControlName="pdfFile"
-                placeholder="Seleccione archivo PDF" aria-describedby="fileHelpId">
-              @if(form.controls['pdfFile'].hasError('required') && form.controls['pdfFile'].touched)
-              {
-                <small>* Campo Requerido</small>
-              }
-            </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripcion</label>
+            <input class="form-control" type="text" id="description" formControlName="description">
+          </div>
+          @if (descriptionField.errors ) {
+          @if (descriptionField.errors['required'] && descriptionField.touched) {
+          <span>* El campo Descripcion es requerido</span>
+          }
+          @if (descriptionField.errors['minlength'] && descriptionField.dirty) {
+          <span>El campo Descripcion debe contener al menos 50 caracteres</span>
+          }
+          @if (descriptionField.errors['maxlength']&& descriptionField.dirty ) {
+          <span>* El campo Descripcion debe contener al maximmo 100 caracteres</span>
+          }
+          }
 
-            <button  class="btn btn-success" >Agregar libro</button>
+          <div class="mb-3">
+            <label for="pdfname" class="form-label">Pdf</label>
+            <input class="form-control" type="text" id="pdfname" formControlName="pdfname">
+          </div>
+          @if (pdfnameField.errors ) {
+          @if (pdfnameField.errors['required'] && pdfnameField.touched) {
+          <span>* El campo PDF es requerido</span>
+          }
+          @if (pdfnameField.errors['minlength'] && pdfnameField.dirty) {
+          <span>El campo titulo debe contener al menos 4 caracteres</span>
+          }
+          @if (pdfnameField.errors['maxlength']&& pdfnameField.dirty ) {
+          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
+          }
+          }
 
-          </form>
-        </div>
+
+
+          <div class="mb-3">
+            <label for="categories" class="form-label">Categories</label>
+            <select id="categories" formControlName="categories" class="form-select">
+              <option value="" disabled selected>Select a category</option>
+              <option value="action-rpg">Action-RPG</option>
+              <option value="Shooter">Shooter</option>
+              <option value="action-adventure">Action-Adventure</option>
+              <option value="racing">Racing</option>
+              <option value="survival-horror">Survival-Horror</option>
+            </select>
+          </div>
+          @if (categoriesField.errors && categoriesField.touched) {
+          @if (categoriesField.errors['required']) {
+          <span>* Seleccione una categoria</span>
+          }
+          }
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" id="state" formControlName="state" class="form-check-input">
+            <label for="state" class="form-check-label">Terms & Conditions</label>
+          </div>
+          @if (stateField.errors && stateField.dirty ) {
+          @if (stateField.errors['required']) {
+          <span>* Acepte los terminos y condiciones</span>
+          }
+          }
+
+          <br>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" (click)="validateform()" class="btn btn-primary">Register</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
--->>
+</div>

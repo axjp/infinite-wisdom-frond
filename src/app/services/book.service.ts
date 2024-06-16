@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 @Injectable({providedIn: 'root'})
 export class BookService {
   private readonly httpClient = inject(HttpClient);
-  private API_URL_USER = `${environment.API_URL}books`;
+  private API_URL_USER = `${environment.API_URL}/books`;
 
   findBooks():Observable<BookI[]> {
     return this.httpClient.get<BookI[]>(this.API_URL_USER);
@@ -25,7 +25,8 @@ export class BookService {
     return this.httpClient.delete(`${this.API_URL_USER}/${id}`);
   }
 
-  findOneBook(id: string):Observable<BookI> {
-    return this.httpClient.get<BookI>(`${this.API_URL_USER}/${id}`);
+  findOneBook(idbook: string):Observable<BookI> {
+    return this.httpClient.get<BookI>(`${this.API_URL_USER}/${idbook}`);
   }
+  
 }

@@ -38,8 +38,10 @@
             <td>{{ book.publicationDate }}</td>
            
             <td>
-                <button class="btn btn-danger" (click)="(book.idbook)">Eliminar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteBook(book.idbook)">Eliminar</button>
             </td>
+            <td><button class="btn btn-danger" (click)="update(book.idbook)">Actualizar</button></td>
+            
         </tr>
         }
     </tbody>
