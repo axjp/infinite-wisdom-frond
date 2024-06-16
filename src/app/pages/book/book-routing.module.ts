@@ -5,7 +5,7 @@ import { BookListComponent } from './book-list/book-list.component';
 
 const routes: Routes = [
   {
-    path: 'form',
+    path: 'form/:idbook',
     component: BookFormComponent
   },
   {

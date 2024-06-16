@@ -19,6 +19,6 @@ import { AdministratorListComponent } from './administrator-list/administrator-l
     AdministratorRoutingModule,
     ReactiveFormsModule,
   ]
-})
+})z
 export class AdministratorModule { }
 */
