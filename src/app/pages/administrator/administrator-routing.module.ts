@@ -9,9 +9,14 @@ const routes: Routes = [
     component:AdministratorListComponent
   },
   {
+    path: 'form',
+    component: AdministratorFormComponent
+  },
+  {
     path:'form/:idAdministrator',
     component:AdministratorFormComponent
   },
+  
   
 ];  
 
