@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
+import { ProtectedComponent } from './pages/protected/protected.component';
 
 const routes: Routes = [
   {
@@ -26,9 +28,12 @@ const routes: Routes = [
     path:'loans',
     loadChildren:() => import('./pages/loan/loan.module').then(m=>m.LoanModule)
   },
-  {
+ /* {
     path: '**', redirectTo: 'common/not-found'
-  },
+  },*/
+  { path: 'login', component: LoginComponent },
+  { path: 'protected', component: ProtectedComponent },
+  { path: '**', redirectTo: 'login' } // Redirigir a login por defecto
 ];
 
 @NgModule({
