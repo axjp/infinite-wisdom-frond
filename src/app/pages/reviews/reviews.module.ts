@@ -16,6 +16,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
     ReactiveFormsModule,
     NgbModule,
     ReviewsRoutingModule
-  ]
+  ],
+  exports:[ReviewsListComponent]
 })
 export class ReviewsModule { }

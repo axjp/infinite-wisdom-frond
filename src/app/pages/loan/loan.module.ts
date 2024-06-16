@@ -7,6 +7,7 @@ import { LoanRoutingModule } from './loan-routing.module';
 import { LoanListComponent } from './loan-list/loan-list.component';
 import { LoanComponent } from './loan/loan.component';
 
+
 @NgModule({
   declarations: [
     LoanListComponent,
@@ -17,7 +18,9 @@ import { LoanComponent } from './loan/loan.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LoanRoutingModule
+    LoanRoutingModule,
+
+
   ]
 })
 export class LoanModule { }

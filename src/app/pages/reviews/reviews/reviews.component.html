@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>Create Review</h2>
+<div class="container mt-5 bg-white p-4 rounded shadow">
+  <h2 class="mb-4 text-primary">Crea un Review</h2>
   <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="reviewComment" class="form-label">Comment</label>
@@ -13,10 +13,15 @@
       <label for="reviewDate" class="form-label">Date</label>
       <input id="reviewDate" type="date" class="form-control" formControlName="reviewDate">
     </div>
-    <div class="mb-3">
-      <label for="isApproved" class="form-label">Approved</label>
+    <div class="form-check mb-3">
       <input id="isApproved" type="checkbox" class="form-check-input" formControlName="isApproved">
+      <label for="isApproved" class="form-check-label">Approved</label>
     </div>
     <button type="submit" class="btn btn-primary">Create Review</button>
+    <a routerLink="/reviews/reviewlist" class="btn btn-secondary ms-2">Ver más comentarios</a>
   </form>
+
+  <ngb-alert *ngIf="successMessage" type="success" class="mt-3">
+    {{ successMessage }}
+  </ngb-alert>
 </div>

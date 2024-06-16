@@ -10,7 +10,9 @@ import { Review } from './../models/review.model';
 export class ReviewService {
   private apiUrl = environment.API_URL + 'review';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    console.log('API URL:', this.apiUrl); // Añadir registro para verificar la URL
+  }
 
   getReviews(): Observable<Review[]> {
     return this.http.get<Review[]>(this.apiUrl);
