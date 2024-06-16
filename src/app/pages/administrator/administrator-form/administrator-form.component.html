@@ -1,1 +1,74 @@
-<p>administrator-form works!</p>
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <img src="assets\img\logo.png" alt="Infinite-wisdom" width="80px">
+          <div class="FormGroup">
+            <form [formGroup]="form">
+              <h2>Registro Administrador</h2>
+  
+                <!-- Nombre -->
+                <div>
+                  <label for="name" class="form-label">Nombre:</label>
+                  <input type="text" class="form-control" id="name" formControlName="name">
+                  @if (nameField.errors && nameField.touched) { @if (nameField.errors['required']) {<span>*El Campo Nombre es requerido</span>}
+                  @if (nameField.errors['miniength']) {<span>E*El campo Nombre debe contener al menos 4 caracteres</span>}
+                  @if (nameField.errors['maxiength']){<span>*El campo Nombre debe contener máximo 50 caracteres</span>}}
+              </div>
+  
+                <!-- Apellido -->
+                <div>
+                  <label for="lastName" class="form-label">Apellido:</label>
+                  <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                  @if (lastNameField.errors && lastNameField.touched) { @if (lastNameField.errors['required']) {<span>*El Campo Apellido es requerido</span>}
+                  @if (lastNameField.errors['miniength']) {<span>E*El campo Apellido debe contener al menos 4 caracteres</span>}
+                  @if (lastNameField.errors['maxiength']){<span>*El campo Apellido debe contener máximo 50 caracteres</span>}}
+              </div>
+  
+                <!-- Email -->
+                <div>
+                  <label for="email" class="form-label">Correo:</label>
+                  <input type="email" class="form-control" id="email" formControlName="email">
+                  @if (emailField.errors && emailField.touched) {@if (emailField.errors['required']) {<span>*El correo es obligatorio</span>}
+                  @if (emailField.errors) {<span>*El formato del correo es inválido.</span>}}
+                </div>
+  
+                <!-- Contraseña -->
+                <div>
+                  <label for="password" class="form-label">Contrasena</label>
+                  <input type="password" class="form-control" id="password" formControlName="password">
+                  @if (passwordField.errors && passwordField.touched) {@if (passwordField.errors['required']) {<span>*La contraseña es obligatoria</span>}
+                  @if (passwordField.errors['minlength']) {<span>*La contraseña debe contener al menos 6 caracteres</span>}}
+                </div>
+  
+                <!-- Número de telefono -->
+                <div>
+                  <label for="cellphone" class="form-label">Numero de Celular:</label>
+                  <input type="number" class="form-control" id="cellphone" formControlName="cellphone">
+                  @if (cellphoneField.errors && cellphoneField.touched) {@if (cellphoneField.errors['required']) {<span>>*Número de Celular Obligatorio</span>}
+                  @if (cellphoneField.errors ['pattern']) {<span>*El número debe contener solo dígitos</span>}}
+                </div>
+  
+                <!-- Fecha de Nacimiento -->
+                <div>
+                  <label for="birthdate" class="form-label">Fecha de Nacimiento:</label>
+                  <input type="date" class="form-control" id="birthdate" formControlName="birthdate">
+                  @if (birthdateField.errors && birthdateField.touched) {
+                  @if (birthdateField.errors['required']) {<span>*Fecha de nacimineto Obligatorio</span>}}
+                </div>
+  
+                <!-- Termino y Condiciones-->
+                <div>
+                  <label for="state">Acepta Terminos y Condiciones</label>
+                  <input type="checkbox" id="state" formControlName="state">
+                  @if (stateField.errors && stateField.touched) {@if (stateField.errors['required']) {<span>*Aceptar los Términos es obligatorio </span>}}
+                </div>
+                <br>
+                <button type="button" (click)="save()">Registrar Administrador</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
