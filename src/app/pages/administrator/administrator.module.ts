@@ -1,12 +1,9 @@
-/*
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { AdministratorFormComponent } from './administrator-form/administrator-form.component';
 import { AdministratorListComponent } from './administrator-list/administrator-list.component';
-
 
 
 @NgModule({
@@ -16,9 +13,7 @@ import { AdministratorListComponent } from './administrator-list/administrator-l
   ],
   imports: [
     CommonModule,
-    AdministratorRoutingModule,
-    ReactiveFormsModule,
+    AdministratorRoutingModule
   ]
-})z
+})
 export class AdministratorModule { }
-*/
