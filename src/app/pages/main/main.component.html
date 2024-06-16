@@ -1,0 +1,194 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets\img\carusel\1.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets\img\carusel\2.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets\img\carusel\3.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets\img\carusel\4.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets\img\carusel\5.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets\img\carusel\6.jpg" class="d-block w-100" height="600" alt="...">
+      </div>
+    </div>
+  </div>
+  <br>
+  <h1 class="card-title" id="8">Lenguaje y Literatura</h1>
+  <br>
+  @for (book of books8; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  
+  <br>
+  <h1 class="card-title" id="3" >Entretenimiento</h1>
+  <br>
+  
+  @for (book of books3; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  
+  <br>
+  <h1 class="card-title" id="4">Idiomas</h1>
+  <br>
+  @for (book of books4; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook"target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="5">Ciencias Naturales</h1>
+  <br>
+  @for (book of books5; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="9">Filosofia</h1>
+  <br>
+  @for (book of books1; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="2">Historia</h1>
+  <br>
+  @for (book of books2; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="6">Matematicas</h1>
+  <br>
+  @for (book of books6; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="7">Artes</h1>
+  <br>
+  @for (book of books7; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="9">Psicologia</h1>
+  <br>
+  @for (book of books9; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="10">Geografia</h1>
+  <br>
+  @for (book of books10; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="11">Tecnologia</h1>
+  <br>
+  @for (book of books11; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }
+  <br>
+  <h1 class="card-title" id="12">Recreacion</h1>
+  <br>
+  
+  @for (book of books12; track $index) {
+  <div class="book-section">
+    <div class="card" style="width: 18rem;">
+      <img [src]="book.imageroute" class="card-img-top" alt="{{book.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Título :{{book.title}}</h5>
+        <a routerLink="/infobook" target="_blank" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+  }

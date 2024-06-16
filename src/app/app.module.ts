@@ -8,11 +8,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewsModule } from './pages/reviews/reviews.module';
 import { ProtectedComponent } from './pages/protected/protected.component';
 import { AuthModule } from './auth/auth.module';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { MainComponent } from './pages/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProtectedComponent
+    ProtectedComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,77 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img src="assets/img/logo.png" alt="Logo Sabiduria Infinita">
+        </a>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a routerLink="" class="nav-link px-2 text-secondary">Inicio</a></li>
+          <li><a href="#" class="nav-link px-2 text-black"></a></li>
+          <li><a href="#" class="nav-link px-2 text-black"></a></li>
+          <li><a href="#" class="nav-link px-2 text-black"></a></li>
+          <li><a routerLink="/upload/0" class="nav-link px-2 text-black">Subir Libro</a></li>
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Categorias
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#1">Filosofia</a></li>
+              <li><a class="dropdown-item" href="#9">Psicologia</a></li>
+              <li><a class="dropdown-item" href="#2">Historia</a></li>
+              <li><a class="dropdown-item" href="#10">Geografia</a></li>
+              <li><a class="dropdown-item" href="#3">Entretenimiento</a></li>
+              <li><a class="dropdown-item" href="#4">Idiomas</a></li>
+              <li><a class="dropdown-item" href="#5">Ciencias Naturales</a></li>
+              <li><a class="dropdown-item" href="#6">Matematicas</a></li>
+              <li><a class="dropdown-item" href="#11">Tecnologia</a></li>
+              <li><a class="dropdown-item" href="#7">Artes</a></li>
+              <li><a class="dropdown-item" href="#12">Recreacion</a></li>
+              <li><a class="dropdown-item" href="#8">Lenguaje y Literatura</a></li>
+            </ul>
+          </div>
+        </ul>
+  
+  
+  
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-success me-2" routerLink="/login">Iniciar Sesion</button>
+          <button type="button" class="btn btn-warning" routerLink="/register/0">Registrate</button>
+        </div>
+        <nav class="navbar">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+              aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido Administrador </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/usertables">Usuarios</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/admintables">Administradores</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/booktables">Libros</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/registeradmin/0">Crear Nuevo Administrador</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
