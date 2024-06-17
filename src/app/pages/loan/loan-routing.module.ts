@@ -5,7 +5,7 @@ import { LoanComponent } from './loan/loan.component';
 
 const routes: Routes = [
   { path: 'list', component: LoanListComponent },
-  { path: 'form', component: LoanComponent },
+  { path: 'form/:idbook', component: LoanComponent }, // Acepta idbook como parámetro
 ];
 
 @NgModule({
