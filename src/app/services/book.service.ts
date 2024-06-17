@@ -13,10 +13,12 @@ export class BookService {
     return this.httpClient.get<BookI[]>(this.API_URL_USER);
   }
 
-  createBook(payload: BookI) {
+  createBook(payload: FormData): Observable<any> {
     return this.httpClient.post(this.API_URL_USER, payload);
   }
-
+  createBookk(payload: BookI):Observable<BookI>  {
+    return this.httpClient.post<BookI>(this.API_URL_USER, payload);
+  }
   updateBook(id: string, payload: BookI):Observable<BookI> {
     return this.httpClient.put<BookI>(`${this.API_URL_USER}/${id}`, payload);
   }

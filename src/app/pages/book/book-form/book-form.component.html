@@ -1,3 +1,4 @@
+<br>
 <div class="container d-flex align-items-center justify-content-center">
   <div class="col col-md-6">
     <div class="card">
@@ -22,51 +23,55 @@
           }
 
           <div class="mb-3">
-            <label for="image" class="form-label">Imagen</label>
-            <input class="form-control" type="text" id="image" formControlName="image">
+            <label for="imageUrl" class="form-label">Imagen</label>
+            <input type="file" (change)="getFile($event, 'image')" class="form-control" id="imageUrl" accept="image/*"
+              formControlName="imageUrl">
           </div>
-          @if (imageField.errors ) {
-          @if (imageField.errors['required'] && imageField.touched) {
-          <span>* El campo titulo es requerido</span>
+          @if (imageUrlField.errors ) {
+          @if (imageUrlField.errors['required'] && imageUrlField.touched) {
+          <span>* El campo Imagen es requerido</span>
           }
-          @if (imageField.errors['minlength'] && imageField.dirty) {
-          <span>El campo titulo debe contener al menos 4 caracteres</span>
+          @if (imageUrlField.errors['minlength'] && imageUrlField.dirty) {
+          <span>El campo Imagen debe contener al menos 4 caracteres</span>
           }
-          @if (imageField.errors['maxlength']&& imageField.dirty ) {
-          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
+          @if (imageUrlField.errors['maxlength']&& imageUrlField.dirty ) {
+          <span>* El campo Imagen debe contener al maximmo 25 caracteres</span>
           }
           }
 
-          <div class="mb-3">
-            <label for="nameauthor" class="form-label">Nombre del Autor</label>
-            <input class="form-control" type="text" id="nameauthor" formControlName="nameauthor">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nameauthor" class="form-label">Nombre del Autor</label>
+              <input class="form-control" type="text" id="nameauthor" formControlName="nameauthor">
+            </div>
+            @if (nameauthorField.errors ) {
+            @if (nameauthorField.errors['required'] && nameauthorField.touched) {
+            <span>* El campo Nombre del Autor es requerido</span>
+            }
+            @if (nameauthorField.errors['minlength'] && nameauthorField.dirty) {
+            <span>El campo Nombre del Autor debe contener al menos 4 caracteres</span>
+            }
+            @if (nameauthorField.errors['maxlength']&& nameauthorField.dirty ) {
+            <span>* El campo Nombre del Autor debe contener al maximmo 25 caracteres</span>
+            }
+            }
+            
+            <div class="col-md-6 mb-3">
+              <label for="lastnameauthor" class="form-label">Apellidor del Autor</label>
+              <input class="form-control" type="text" id="lastnameauthor" formControlName="lastnameauthor">
+            </div>
+            @if (lastnameauthorField.errors ) {
+            @if (lastnameauthorField.errors['required'] && lastnameauthorField.touched) {
+            <span>* El campo tiApellidor del Autortulo es requerido</span>
+            }
+            @if (lastnameauthorField.errors['minlength'] && lastnameauthorField.dirty) {
+            <span>El campo Apellidor del Autor debe contener al menos 4 caracteres</span>
+            }
+            @if (lastnameauthorField.errors['maxlength']&& lastnameauthorField.dirty ) {
+            <span>* El campo Apellidor del Autor debe contener al maximmo 25 caracteres</span>
+            }
+            }
           </div>
-          @if (nameauthorField.errors ) {
-          @if (nameauthorField.errors['required'] && nameauthorField.touched) {
-          <span>* El campo Nombre del Autor es requerido</span>
-          }
-          @if (nameauthorField.errors['minlength'] && nameauthorField.dirty) {
-          <span>El campo Nombre del Autor debe contener al menos 4 caracteres</span>
-          }
-          @if (nameauthorField.errors['maxlength']&& nameauthorField.dirty ) {
-          <span>* El campo Nombre del Autor debe contener al maximmo 25 caracteres</span>
-          }
-          }
-          <div class="mb-3">
-            <label for="lastnameauthor" class="form-label">Apellidor del Autor</label>
-            <input class="form-control" type="text" id="lastnameauthor" formControlName="lastnameauthor">
-          </div>
-          @if (lastnameauthorField.errors ) {
-          @if (lastnameauthorField.errors['required'] && lastnameauthorField.touched) {
-          <span>* El campo tiApellidor del Autortulo es requerido</span>
-          }
-          @if (lastnameauthorField.errors['minlength'] && lastnameauthorField.dirty) {
-          <span>El campo Apellidor del Autor debe contener al menos 4 caracteres</span>
-          }
-          @if (lastnameauthorField.errors['maxlength']&& lastnameauthorField.dirty ) {
-          <span>* El campo Apellidor del Autor debe contener al maximmo 25 caracteres</span>
-          }
-          }
 
           <div class="mb-3">
             <label for="publicationDate" class="form-label">Fecha de publicacion</label>
@@ -110,7 +115,7 @@
 
           <div class="mb-3">
             <label for="description" class="form-label">Descripcion</label>
-            <input class="form-control" type="text" id="description" formControlName="description">
+            <textarea class="form-control" type="text" id="description" formControlName="description"></textarea>
           </div>
           @if (descriptionField.errors ) {
           @if (descriptionField.errors['required'] && descriptionField.touched) {
@@ -123,24 +128,6 @@
           <span>* El campo Descripcion debe contener al maximmo 100 caracteres</span>
           }
           }
-
-          <div class="mb-3">
-            <label for="pdfname" class="form-label">Pdf</label>
-            <input class="form-control" type="text" id="pdfname" formControlName="pdfname">
-          </div>
-          @if (pdfnameField.errors ) {
-          @if (pdfnameField.errors['required'] && pdfnameField.touched) {
-          <span>* El campo PDF es requerido</span>
-          }
-          @if (pdfnameField.errors['minlength'] && pdfnameField.dirty) {
-          <span>El campo titulo debe contener al menos 4 caracteres</span>
-          }
-          @if (pdfnameField.errors['maxlength']&& pdfnameField.dirty ) {
-          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
-          }
-          }
-
-
 
           <div class="mb-3">
             <label for="categories" class="form-label">Categories</label>
@@ -159,6 +146,23 @@
           }
           }
 
+          <div class="mb-3">
+            <label for="pdfname" class="form-label">Pdf</label>
+            <input type="file" (change)="getFile($event, 'pdf')" class="form-control" id="pdfname" accept=".pdf"
+              formControlName="pdfname">
+          </div>
+          @if (pdfnameField.errors ) {
+          @if (pdfnameField.errors['required'] && pdfnameField.touched) {
+          <span>* El campo PDF es requerido</span>
+          }
+          @if (pdfnameField.errors['minlength'] && pdfnameField.dirty) {
+          <span>El campo titulo debe contener al menos 4 caracteres</span>
+          }
+          @if (pdfnameField.errors['maxlength']&& pdfnameField.dirty ) {
+          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
+          }
+          }
+
           <div class="mb-3 form-check">
             <input type="checkbox" id="state" formControlName="state" class="form-check-input">
             <label for="state" class="form-check-label">Terms & Conditions</label>
@@ -168,14 +172,13 @@
           <span>* Acepte los terminos y condiciones</span>
           }
           }
-
           <br>
-
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" (click)="validateform()" class="btn btn-primary">Register</button>
+            <button type="button" (click)="submitForm()" class="btn btn-primary">Register</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+<br>

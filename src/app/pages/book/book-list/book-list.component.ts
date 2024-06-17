@@ -28,23 +28,16 @@ export class BookListComponent implements OnInit {
     );
   }
 
-  deleteBook(idbook?: string): void {
-    if (idbook) {
-      this.bookService.deleteBook(idbook).subscribe(
-        () => {
-          this.findBooks(); // Refresh the book list after deletion
-        },
-        (error) => {
-          console.error('Error deleting book:', error);
-        }
-      );
-    }
+  deleteBook(idbook?:string) {
+    this.bookService.deleteBook(idbook!).subscribe(response => {
+      console.log(response);
+      this.findBooks();
+    })
   }
 
-  update(idbook?: string): void {
-    if (idbook) {
-      this.router.navigate(['/books/form', idbook]);
-    }
+
+  update(idbook?: string) {
+    this.router.navigate(['/books/form', idbook]);
   }
 
   navigateToLoanForm(idbook?: string): void {
