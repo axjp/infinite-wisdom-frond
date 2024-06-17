@@ -5,14 +5,17 @@ import { BookListComponent } from './book-list/book-list.component';
 
 const routes: Routes = [
   {
-    path: 'form/:idbook',
+    path: 'form',
     component: BookFormComponent
   },
   {
     path: 'list',
     component: BookListComponent
   },
-  
+  {
+    path: 'form/:idBook',
+    component: BookFormComponent
+  },
 ];
 
 @NgModule({

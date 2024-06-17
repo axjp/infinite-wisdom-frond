@@ -1,47 +1,46 @@
-<p>Table is just a mapping of objects to table rows with <code>&#64;for</code></p>
-
+<br>
 <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">TÍTULO</th>
-            <th scope="col">IMAGEN</th>
-            <th scope="col">AÑO DE PUBLICACIÓN</th>
+            <th scope="col">PORTADA</th>
+            <th scope="col">LIBRO</th>
             <th scope="col">NOMBRE AUTOR</th>
             <th scope="col">APELLIDO AUTOR</th>
+            <th scope="col">AÑO DE PUBLICACIÓN</th>
             <th scope="col">EDITORIAL</th>
-            <th scope="col">CATEGORÍAS</th>
+            <th scope="col">EDICION</th>
             <th scope="col">DESCRIPCIÓN</th>
-            <th scope="col">PDF</th>
+            <th scope="col">CATEGORÍAS</th>
+            <th scope="col">ESTADO</th>
             <th scope="col">ELIMINAR</th>
+            <th scope="col">ACTUALIZAR</th>
         </tr>
     </thead>
     <tbody>
         @for (book of books; track book.title; let i = $index) {
         <tr>
             <th scope="row">{{ i + 1 }}</th>
-            <!--<td>
-                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + book.flag"
-                    [alt]="'The flag of ' + book.name" class="me-2" style="width: 20px" />
-                {{ book.name }}
-            </td>
-            <td>{{ book.area | number }}</td>
-            <td>{{ book.population | number }}</td>-->
             <td>{{ book.title }}</td>
-           
-           
-            <td>{{ book.idbook }}</td>
+            <td>
+                <img [src]="book.imageUrl" alt="{{book.title}}">
+            </td>
+            <pdf-viewer [src]="book.pdfUrl" [render-text]="true" [original-size]="false"
+                style="width: 200px; height: 300px"></pdf-viewer>
+            <td>{{ book.nameauthor }}</td>
             <td>{{ book.lastnameauthor }}</td>
+            <td>{{ book.publicationDate }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.edition }}</td>
-          
-            <td>{{ book.publicationDate }}</td>
-           
+            <td>{{ book.description }}</td>
+            <td>{{ book.categories }}</td>
+            <td>{{ book.state }}</td>
             <td>
                 <button type="button" class="btn btn-danger" (click)="deleteBook(book.idbook)">Eliminar</button>
             </td>
             <td><button class="btn btn-danger" (click)="update(book.idbook)">Actualizar</button></td>
-            
+
         </tr>
         }
     </tbody>

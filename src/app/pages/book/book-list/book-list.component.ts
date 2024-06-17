@@ -31,6 +31,7 @@ export class BookListComponent {
   deleteBook(idbook?:string) {
     this.bookService.deleteBook(idbook!).subscribe(response => {
       console.log(response);
+      this.findBooks();
     })
   }
 

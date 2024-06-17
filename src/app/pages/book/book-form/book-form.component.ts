@@ -16,14 +16,20 @@ export class BookFormComponent {
   protected form: FormGroup;
   protected book: BookI = {};
   protected idbook: any = null;
+  protected fileTmp: any;
+  protected imageTmp: any;
+  selectedPdf: File | null = null;
+  selectedImage: File | null = null;
+  message: string = '';
 
   constructor() {
     this.form = this.buildForm;
-    
+
     this.route.params.subscribe(params => {
       this.idbook = params['idbook'];
       if (this.idbook) {
         this.findOneBook(this.idbook);
+        console.log(this.idbook);
       }
     });
   }
@@ -37,8 +43,8 @@ export class BookFormComponent {
       edition: [null, [Validators.required, Validators.min(0)]],
       editorial: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(100)]],
-      pdfname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-      image: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      pdfname: ['', [Validators.required]],
+      imageUrl: ['', [Validators.required]],
       categories: [[], Validators.required],
       state: [false, Validators.requiredTrue],
     });
@@ -68,8 +74,8 @@ export class BookFormComponent {
   get pdfnameField(): AbstractControl {
     return this.form.controls['pdfname'];
   };
-  get imageField(): AbstractControl {
-    return this.form.controls['image'];
+  get imageUrlField(): AbstractControl {
+    return this.form.controls['imageUrl'];
   };
   get categoriesField(): AbstractControl {
     return this.form.controls['categories'];
@@ -78,20 +84,106 @@ export class BookFormComponent {
     return this.form.controls['state'];
   };
 
-
   validateform() {
-    if (this.form.valid) {
-      alert('Valido');
+    if (this.form.status === 'VALID') {
+      this.bookService.createBook(this.form.value).subscribe(
+        response => {
+          alert('Registro realizado con éxito');
+        });
     } else {
-      alert('no Valido');
+      this.form.markAllAsTouched();
+      alert('Por favor, completa los campos correctamente.');
     }
   }
 
+
+  
+  getFile(event: any, fileType: string) {
+    const [file] = event.target.files;
+    if (fileType === 'image') {
+      this.imageTmp = {
+        fileRaw: file,
+        fileName: file.name
+      };
+    } else if (fileType === 'pdf') {
+      this.fileTmp = {
+        fileRaw: file,
+        fileName: file.name
+      };
+    }
+  }
+  submitForm() {
+    if (this.form.valid) {
+      const formData = new FormData();
+      formData.append('title', this.form.get('title')?.value);
+      formData.append('nameauthor', this.form.get('nameauthor')?.value);
+      formData.append('lastnameauthor', this.form.get('lastnameauthor')?.value);
+      formData.append('publicationDate', this.form.get('publicationDate')?.value);
+      formData.append('edition', this.form.get('edition')?.value);
+      formData.append('editorial', this.form.get('editorial')?.value);
+      formData.append('description', this.form.get('description')?.value);
+      formData.append('categories', this.form.get('categories')?.value);
+      formData.append('state', this.form.get('state')?.value);
+
+      if (this.imageTmp) {
+        formData.append('image', this.imageTmp.fileRaw);
+      }
+      if (this.fileTmp) {
+        formData.append('pdf', this.fileTmp.fileRaw);
+      }
+
+      this.bookService.createBook(formData).subscribe(
+        response => {
+          alert('Registro realizado con éxito');
+          console.log(response);
+        },
+        error => {
+          alert('Ocurrió un error al registrar el libro');
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+      alert('Por favor, completa los campos correctamente.');
+    }
+  }
+ /* uploadFiles() {
+    const formData = new FormData();
+    if (this.imageTmp) {
+      formData.append('image', this.imageTmp.fileRaw);
+    }
+    if (this.fileTmp) {
+      formData.append('pdf', this.fileTmp.fileRaw);
+    }
+    this.bookService.createBook(formData).subscribe(response => {
+      console.log(response);
+    });
+  }
+  
+  createBook() {
+    this.bookService.createBook(this.form.value).subscribe(response => {
+      console.log(response);
+    })
+  }*/
+  /* createBook() {
+     this.bookService.createBook({}).subscribe(response => {
+       console.log(response);
+     })
+   }
+ 
+ 
+   validateform() {
+     if (this.form.valid) {
+       alert('Valido');
+     } else {
+       alert('no Valido');
+     }
+   }
+ */
   findOneBook(idbook: string) {
     this.bookService.findOneBook(idbook).subscribe(response => {
       this.book = response;
       this.form.patchValue(this.book);
     });
   }
-  
+
 }
