@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoanComponent implements OnInit {
   loans: LoanI[] = [];
   loanForm: FormGroup;
+  todayDate: string = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
 
   constructor(private loanService: LoanService, private fb: FormBuilder) {
     this.loanForm = this.fb.group({
@@ -28,7 +29,7 @@ export class LoanComponent implements OnInit {
   fetchLoans(): void {
     this.loanService.findLoans().subscribe(
       (response: LoanI[]) => {
-        this.loans = response;
+        this.loans = response.filter(loan => loan.state); // Solo préstamos activos
       },
       (error) => {
         console.error('Error fetching loans:', error);
@@ -46,7 +47,9 @@ export class LoanComponent implements OnInit {
       };
 
       // Agregar el nuevo préstamo a la lista local antes de enviar al servidor
-      this.loans.push(newLoan);
+      if (newLoan.state) {
+        this.loans.push(newLoan);
+      }
 
       // Enviar el nuevo préstamo al servicio para crearlo en el servidor
       this.loanService.createLoan(newLoan).subscribe(
@@ -55,8 +58,10 @@ export class LoanComponent implements OnInit {
         },
         (error) => {
           console.error('Error creating loan:', error);
-          // En caso de error, remover el préstamo agregado localmente
-          this.loans.pop();
+          // En caso de error, remover el préstamo agregado localmente si estaba activo
+          if (newLoan.state) {
+            this.loans.pop();
+          }
         }
       );
     }

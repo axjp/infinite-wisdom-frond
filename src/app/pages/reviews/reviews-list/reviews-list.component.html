@@ -1,12 +1,26 @@
 <div class="container">
-  <h1 class="my-4">Review List</h1>
+  <br>
+  <h2>Reviews de los libros</h2>
+<br>
   <ul class="list-group">
     <li *ngFor="let review of reviews" class="list-group-item">
-      <p><strong>Comment:</strong> {{ review.reviewComment }}</p>
-      <p><strong>Rating:</strong> {{ review.reviewRating }}/5</p>
-      <p><strong>Date:</strong> {{ review.reviewDate | date }}</p>
-      <p><strong>Approved:</strong> {{ review.isApproved }}</p>
-      <button class="btn btn-danger" (click)="deleteReview(review.idreview)">Delete</button>
+      <div>
+        <p><strong>Comment:</strong> {{ review.reviewComment }}</p>
+        <p><strong>Rating:</strong> {{ review.reviewRating }}</p>
+        <p><strong>Date:</strong> {{ review.reviewDate }}</p>
+        <p><strong>Approved:</strong> {{ review.isApproved }}</p>
+        <button (click)="editReview(review.idreview)" class="btn btn-sm btn-primary">Edit</button>
+        <button (click)="deleteReview(review.idreview)" class="btn btn-sm btn-danger">Delete</button>
+      </div>
+      <br>
     </li>
+
   </ul>
+  <br>
+  <a routerLink="/reviews/reviewform" class="btn btn-secondary ms-2">Crear un nuevo comentario</a>
+  <br>
+  <br>
 </div>
+<
+
+

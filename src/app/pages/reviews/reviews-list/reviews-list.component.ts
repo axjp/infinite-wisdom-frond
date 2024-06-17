@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ReviewService } from '../../../services/reviews.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { Review } from '../../../models/review.model';
+import { ReviewService } from '../../../services/reviews.service';
 
 @Component({
   selector: 'app-reviews-list',
@@ -9,8 +10,10 @@ import { Review } from '../../../models/review.model';
 })
 export class ReviewsListComponent implements OnInit {
   reviews: Review[] = [];
+  @Output() edit = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
 
-  constructor(private reviewService: ReviewService) { }
+  constructor(private reviewService: ReviewService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadReviews();
@@ -18,15 +21,30 @@ export class ReviewsListComponent implements OnInit {
 
   loadReviews(): void {
     this.reviewService.getReviews().subscribe(
-      (reviews) => this.reviews = reviews,
-      (error) => console.error('Error fetching reviews', error)
+      reviews => {
+        this.reviews = reviews;
+      },
+      error => {
+        console.error('Error loading reviews:', error);
+      }
     );
   }
 
+  editReview(id: string): void {
+    this.router.navigate(['/reviews/reviewform'], { queryParams: { editReviewId: id } });
+  }
+
   deleteReview(id: string): void {
-    this.reviewService.deleteReview(id).subscribe(
-      () => this.reviews = this.reviews.filter(review => review.idreview !== id),
-      (error) => console.error('Error deleting review:', error)
-    );
+    if (confirm('Are you sure you want to delete this review?')) {
+      this.reviewService.deleteReview(id).subscribe({
+        next: () => {
+          console.log('Review deleted successfully');
+          this.loadReviews();
+        },
+        error: (error) => {
+          console.error('Error deleting review:', error);
+        }
+      });
+    }
   }
 }

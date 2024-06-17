@@ -1,7 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { AbstractControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdministratorService } from '../../../services/administrator.service'; 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdministratorI } from '../../../models/administrator.interface';
 
 @Component({
@@ -16,13 +16,15 @@ export class AdministratorFormComponent {
   protected idAdministrator:any=null;
   private route: ActivatedRoute = inject(ActivatedRoute);
   protected administrator:AdministratorI={};
+  private isEditMode = false;
 
-  constructor() 
+  constructor(private router: Router) 
   {
     this.form = this.buildForm;
     this.route.params.subscribe(params => {
       this.idAdministrator = params['idAdministrator'];
       if (this.idAdministrator) {
+        this.isEditMode = true;
         this.findAdministratorOne(this.idAdministrator);}});
   }
 
@@ -59,20 +61,33 @@ export class AdministratorFormComponent {
     return this.form.controls['state'];
   };
 
-  // Llevar los datos al backend
-  save() {
+  saveOrUpdate() {
     if (this.form.status === 'VALID') {
-      this.administratorService.createAdministrator(this.form.value).subscribe(
-        response => {
-          alert('Registro realizado con éxito');
-        });
+      if (this.isEditMode) {
+        this.administratorService.updateAdministrator(this.idAdministrator, this.form.value).subscribe(
+          response => {
+            alert('Cambios guardados con éxito');
+            this.router.navigate(['/list']); 
+          },
+        );
+      } else {
+        this.administratorService.createAdministrator(this.form.value).subscribe(
+          response => {
+            alert('Administrador registrado con éxito');
+            this.form.reset();
+          }
+        );
+      }
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
+
   findAdministratorOne(idAdministrator: string) {
     this.administratorService.findAdministratorOne(idAdministrator).subscribe(response => {
       this.administrator = response;
-      this.form.patchValue(this.administrator);});}
+      this.form.patchValue(this.administrator);
+    });
+  }
 }
