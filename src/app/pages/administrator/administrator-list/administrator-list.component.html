@@ -1,4 +1,4 @@
-<table class="table table-dark table-striped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -22,11 +22,11 @@
       <td class="table-dark">{{ administrator.email }}</td>
       <td class="table-dark">
         <!-- Ejemplo de botón para actualizar -->
-        <button (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
       </td>
       <td class="table-dark">
         <!-- Ejemplo de botón para eliminar -->
-        <button (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
       </tr>
   </tbody>
 }
