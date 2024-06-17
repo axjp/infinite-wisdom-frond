@@ -7,6 +7,8 @@
       <span>Return Date: {{ loan.returnDate }}</span><br>
       <span>Email: {{ loan.email }}</span><br>
       <span>Status: {{ loan.state ? 'Active' : 'Inactive' }}</span><br>
+      <span>Book Title: {{ loan.book?.title }}</span><br>
+      <span>Author: {{ loan.book?.nameauthor }} {{ loan.book?.lastnameauthor }}</span><br>
       <button class="btn btn-danger btn-sm" (click)="deleteLoan(loan.idloan)">Delete</button>
     </li>
   </ul>
