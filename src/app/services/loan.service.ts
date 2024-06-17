@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoanI } from '../models/loan.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoanService {
-  private apiUrl = 'http://localhost:3000/api/loans/';
+  private apiUrl = environment.API_URL + '/loans';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('API URL:', this.apiUrl);
+  }
 
   findLoans(): Observable<LoanI[]> {
     return this.http.get<LoanI[]>(this.apiUrl);

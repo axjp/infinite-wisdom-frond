@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LoanService } from '../../../services/loan.service';
 import { LoanI } from '../../../models/loan.interface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,9 +12,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoanComponent implements OnInit {
   loans: LoanI[] = [];
   loanForm: FormGroup;
-  todayDate: string = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+  todayDate: string = new Date().toISOString().split('T')[0];
+  idbook: string | null = null;
 
-  constructor(private loanService: LoanService, private fb: FormBuilder) {
+  constructor(
+    private loanService: LoanService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute
+  ) {
     this.loanForm = this.fb.group({
       loan_date: ['', Validators.required],
       return_date: ['', [Validators.required, Validators.max(10)]],
@@ -24,12 +30,16 @@ export class LoanComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchLoans();
+    this.route.paramMap.subscribe(params => {
+      this.idbook = params.get('idbook');
+      console.log('Book ID:', this.idbook); // Verifica el id del libro
+    });
   }
 
   fetchLoans(): void {
     this.loanService.findLoans().subscribe(
       (response: LoanI[]) => {
-        this.loans = response.filter(loan => loan.state); // Solo préstamos activos
+        this.loans = response.filter(loan => loan.state);
       },
       (error) => {
         console.error('Error fetching loans:', error);
@@ -43,22 +53,19 @@ export class LoanComponent implements OnInit {
         loanDate: new Date(this.loanForm.value.loan_date),
         returnDate: +this.loanForm.value.return_date,
         email: this.loanForm.value.email,
-        state: !!this.loanForm.value.state, // Convertir a booleano asegurando que no sea undefined
+        state: !!this.loanForm.value.state,
       };
 
-      // Agregar el nuevo préstamo a la lista local antes de enviar al servidor
       if (newLoan.state) {
         this.loans.push(newLoan);
       }
 
-      // Enviar el nuevo préstamo al servicio para crearlo en el servidor
       this.loanService.createLoan(newLoan).subscribe(
         () => {
-          this.loanForm.reset(); // Reiniciar el formulario después de enviar
+          this.loanForm.reset();
         },
         (error) => {
           console.error('Error creating loan:', error);
-          // En caso de error, remover el préstamo agregado localmente si estaba activo
           if (newLoan.state) {
             this.loans.pop();
           }
@@ -71,7 +78,7 @@ export class LoanComponent implements OnInit {
     if (idloan) {
       this.loanService.deleteLoan(idloan).subscribe(
         () => {
-          this.fetchLoans(); // Actualizar la lista después de eliminar el préstamo
+          this.fetchLoans();
         },
         (error) => {
           console.error('Error deleting loan:', error);

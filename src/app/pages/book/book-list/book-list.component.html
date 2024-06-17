@@ -14,6 +14,8 @@
             <th scope="col">DESCRIPCIÓN</th>
             <th scope="col">PDF</th>
             <th scope="col">ELIMINAR</th>
+            <th scope="col">ACTUALIZAR</th>
+            <th scope="col">PRESTAR</th>
         </tr>
     </thead>
     <tbody>
@@ -28,20 +30,23 @@
             <td>{{ book.area | number }}</td>
             <td>{{ book.population | number }}</td>-->
             <td>{{ book.title }}</td>
-           
-           
+
+
             <td>{{ book.idbook }}</td>
             <td>{{ book.lastnameauthor }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.edition }}</td>
-          
+
             <td>{{ book.publicationDate }}</td>
-           
+
             <td>
                 <button type="button" class="btn btn-danger" (click)="deleteBook(book.idbook)">Eliminar</button>
             </td>
             <td><button class="btn btn-danger" (click)="update(book.idbook)">Actualizar</button></td>
-            
+            <td>
+              <button class="btn btn-primary" (click)="navigateToLoanForm(book.idbook)">Prestar</button> <!-- Botón para navegar al formulario de préstamos -->
+            </td>
+
         </tr>
         }
     </tbody>
