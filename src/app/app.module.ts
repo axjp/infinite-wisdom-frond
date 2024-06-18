@@ -11,6 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { MainComponent } from './pages/main/main.component';
+import { CustomerModule } from './pages/customer/customer.module';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { MainComponent } from './pages/main/main.component';
     ProtectedComponent,
     HeaderComponent,
     FooterComponent,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { MainComponent } from './pages/main/main.component';
     HttpClientModule,
     NgbModule,
     ReviewsModule,
-    AuthModule
+    AuthModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

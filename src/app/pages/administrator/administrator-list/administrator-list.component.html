@@ -22,12 +22,13 @@
       <td class="table-dark">{{ administrator.email }}</td>
       <td class="table-dark">
         <!-- Ejemplo de botón para actualizar -->
-        <button (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
+        <button class="btn btn-lg btn-outline-primary"  (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
       </td>
       <td class="table-dark">
-        <!-- Ejemplo de botón para eliminar -->
-        <button (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
+       
+        <button  class="btn btn-lg btn-outline-primary"  (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
       </tr>
+
   </tbody>
 }
 </table>

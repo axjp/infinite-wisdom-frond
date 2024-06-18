@@ -1,136 +1,138 @@
 <div class="container d-flex align-items-center justify-content-center">
-  <div class="col col-md-6">
-      <div class="card">
-          <div class="card-header">
-              <img src="assets\img\logo.png" alt="Logo Sabiduria Infinita">
-              <h2>Por favor, registrese</h2>
-              <form (ngSubmit)=" ngOnInit()">
-                  <div class="form-group">
-                      <label for="name">Nombre</label>
-                      <input type="text" class="form-control" id="name" formControlName="name"
-                          placeholder="Ingresa tu nombre">
-
-                      @if(customerform.controls['name'].hasError('required')&& customerform.controls['name'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-
-                      @if(customerform.controls['name'].hasError('minlength') && customerform.controls['name'].touched)
-                      {
-                      <small>*El nombre debe tener entre 4 y 50 caracteres.</small>
-                      }
-
-                      @if(customerform.controls['name'].hasError('maxlength') && customerform.controls['name'].touched)
-                      {
-                      <small>*El nombre debe tener entre 4 y 50 caracteres.</small>
-                      }
-
+    <div class="col col-md-6">
+        <div class="card">
+            <div>
+                <img src="assets\img\logo.png" alt="Logo Sabiduria Infinita">
+                <h2>Por favor, registrese</h2>
+                <form [formGroup]="customerform" >
+                    <h2>{{ isEditMode ? 'Actualizar Cliente' : 'Registrar Cliente' }}</h2>
+                    <div class="form-group" >
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" autocomplete="given-name"
+                            placeholder="Ingresa tu nombre">
+  
+                        @if(customerform.controls['name'].hasError('required')&& customerform.controls['name'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+  
+                        @if(customerform.controls['name'].hasError('minlength') && customerform.controls['name'].touched)
+                        {
+                        <small>*El nombre debe tener entre 4 y 50 caracteres.</small>
+                        }
+  
+                        @if(customerform.controls['name'].hasError('maxlength') && customerform.controls['name'].touched)
+                        {
+                        <small>*El nombre debe tener entre 4 y 50 caracteres.</small>
+                        }
+  
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Apellido</label>
+                        <input type="text" class="form-control" id="lastname" formControlName="lastname"
+                            placeholder="Ingresa tu apellido">
+                        @if(customerform.controls['lastname'].hasError('required')&& customerform.controls['lastname'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+  
+                        @if(customerform.controls['lastname'].hasError('minlength') && customerform.controls['lastname'].touched)
+                        {
+                        <small>*El apellido debe tener entre 4 y 50 caracteres.</small>
+                        }
+  
+                        @if(customerform.controls['lastname'].hasError('maxlength') && customerform.controls['lastname'].touched)
+                        {
+                        <small>*El apellido debe tener entre 4 y 50 caracteres.</small>
+                        }
+  
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" formControlName="email" autocomplete="off"
+                            placeholder="Ingresa tu correo electrónico">
+                        @if(customerform.controls['email'].hasError('required')&& customerform.controls['email'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+  
+                        @if(customerform.controls['email'].hasError('email'))
+                        {
+                        <small>*El correo electrónico no es válido.</small>
+                        }
+                    </div>
+                    <div>
+                      <label for="name" class="form-label">Nombre de Usuario:</label>
+                      <input type="text" class="form-control" id="customerUser" autocomplete="username" formControlName="customerUser">
+                      @if (customerUserField.errors && nameField.touched) { @if (customerUserField.errors['required']) {<span>*El Campo Nombre es requerido</span>}
+                      @if (customerUserField.errors['miniength']) {<span>E*El campo Nombre debe contener al menos 4 caracteres</span>}
+                      @if (customerUserField.errors['maxiength']){<span>*El campo Nombre debe contener máximo 50 caracteres</span>}}
                   </div>
-                  <div class="form-group">
-                      <label for="lastname">Apellido</label>
-                      <input type="text" class="form-control" id="lastname" formControlName="lastname"
-                          placeholder="Ingresa tu apellido">
-                      @if(customerform.controls['lastname'].hasError('required')&& customerform.controls['lastname'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-
-                      @if(customerform.controls['lastname'].hasError('minlength') && customerform.controls['lastname'].touched)
-                      {
-                      <small>*El apellido debe tener entre 4 y 50 caracteres.</small>
-                      }
-
-                      @if(customerform.controls['lastname'].hasError('maxlength') && customerform.controls['lastname'].touched)
-                      {
-                      <small>*El apellido debe tener entre 4 y 50 caracteres.</small>
-                      }
-
-                  </div>
-                  <div class="form-group">
-                      <label for="email">Correo electrónico</label>
-                      <input type="email" class="form-control" id="email" formControlName="email"
-                          placeholder="Ingresa tu correo electrónico">
-                      @if(customerform.controls['email'].hasError('required')&& customerform.controls['email'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-
-                      @if(customerform.controls['email'].hasError('email'))
-                      {
-                      <small>*El correo electrónico no es válido.</small>
-                      }
-                  </div>
-                  <div class="form-group">
-                      <label for="password">Contraseña</label>
-                      <input type="password" class="form-control" id="password" formControlName="password"
-                          placeholder="Ingresa tu contraseña">
-                      @if(customerform.controls['password'].hasError('required')&& customerform.controls['password'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-
-                      @if(customerform.controls['password'].hasError('minlength') && customerform.controls['password'].touched)
-                      {
-                      <small>*La contraseña debe tener entre 10 y 16 caracteres.</small>
-                      }
-
-                      @if(customerform.controls['password'].hasError('maxlength') && customerform.controls['password'].touched)
-                      {
-                      <small>*El contraseña debe tener entre 10 y 16 caracteres.</small>
-                      }
-                  </div>
-                  <div class="form-group">
-                      <label for="birthdate">Fecha de nacimiento</label>
-                      <input type="date" class="form-control" id="birthdate" formControlName="birthdate">
-                      @if(customerform.controls['birthdate'].hasError('required')&& customerform.controls['birthdate'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-                      @if(customerform.controls['birthdate'].hasError('min'))
-                      {<small>*Debes ser mayor de 18 años.</small>}
-                  </div>
-                  <div class="form-group">
-                      <label for="idgender" class="form-label">Genero</label>
-                      <select class="form-control" id="idgender" formControlName="idgender">
-                          <option value="null" disabled selected>Selecciona tu Genero</option>
-                          @for(gender of genders; track $index){
-                          <option value="{{gender.idgender}}">{{gender.gender}}</option>
-                          }
-                      </select>
-                      @if(customerform.controls['idgender'].hasError('required')&& customerform.controls['idgender'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-                  </div>
-                  <div class="form-group">
-                    <label for="phoneNumber">Número de teléfono:</label>
-                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="idcity">Ciudad</label>
-                      <select class="form-control" id="idcity" formControlName="idcity">
-                          <option value="null" disabled selected>Selecciona tu ciudad</option>
-                          @for(city of cities; track $index){
-                          <option value="{{city.idcity}}"> {{city.city}} </option>
-                          }
-                      </select>
-                      @if(customerform.controls['idcity'].hasError('required')&& customerform.controls['idcity'].touched)
-                      {
-                      <small>* Campo Requerido</small>
-                      }
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="accept" name="accept">
-                    <label class="form-check-label" for="accept">Acepto los términos de uso</label>
-                  </div>
-                  <br>
-                  <button class="btn btn-primary w-100 py-2">Registrarse</button>
-                  <p></p>
-                  <button type="button" class="btn btn-primary w-100 py-2"
-                      (click)="onSubmit()">Actualizar</button>
-              </form>
-          </div>
-      </div>
+      
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" id="password" formControlName="password" autocomplete="current-password"
+                            placeholder="Ingresa tu contraseña">
+                        @if(customerform.controls['password'].hasError('required')&& customerform.controls['password'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+  
+                        @if(customerform.controls['password'].hasError('minlength') && customerform.controls['password'].touched)
+                        {
+                        <small>*La contraseña debe tener entre 10 y 16 caracteres.</small>
+                        }
+  
+                        @if(customerform.controls['password'].hasError('maxlength') && customerform.controls['password'].touched)
+                        {
+                        <small>*El contraseña debe tener entre 10 y 16 caracteres.</small>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="birthday" formControlName="birthday">
+                        @if(customerform.controls['birthday'].hasError('required')&& customerform.controls['birthday'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="idgender" class="form-label">Genero</label>
+                        <input type="text" class="form-control" id="idgender" formControlName="idgender">                        
+                        @if(customerform.controls['idgender'].hasError('maxlength')&& customerform.controls['idgender'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+                    </div>
+                    <div>
+                      <label for="cellphone" class="form-label">Numero de Celular:</label>
+                      <input type="" class="form-control" id="cellphone" formControlName="cellphone">
+                      @if (cellphoneField.errors && cellphoneField.touched) {@if (cellphoneField.errors['required']) {<span>>*Número de Celular Obligatorio</span>}
+                      @if (cellphoneField.errors ['maxlength']) {<span>*El número debe contener solo dígitos</span>}}
+                    </div>
+  
+                    <div class="form-group">
+                        <label for="idcity">Ciudad</label>        
+                        <input type="text" class="form-control" id="idcity" formControlName="idcity">   
+                        @if(customerform.controls['idcity'].hasError('maxlength')&& customerform.controls['idcity'].touched)
+                        {
+                        <small>* Campo Requerido</small>
+                        }
+                    </div>
+                    <div>
+                      
+                      <input type="checkbox" id="accept" formControlName="accept"> 
+                      @if (acceptField.errors && acceptField.touched) {@if (acceptField.errors['required']) {<span>*Aceptar los Términos es obligatorio </span>}}
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-primary w-100 py-2"
+                        (click)="onSubmit()">
+                        {{ isEditMode ? 'Guardar Cambios' : 'Registrar Ciente' }}</button>
+                        
+                </form>
+            </div>
+        </div>
+    </div>
   </div>
-</div>
+  

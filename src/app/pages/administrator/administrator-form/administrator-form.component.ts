@@ -16,7 +16,7 @@ export class AdministratorFormComponent {
   protected idAdministrator:any=null;
   private route: ActivatedRoute = inject(ActivatedRoute);
   protected administrator:AdministratorI={};
-  private isEditMode = false;
+  protected isEditMode = false;
 
   constructor(private router: Router) 
   {
