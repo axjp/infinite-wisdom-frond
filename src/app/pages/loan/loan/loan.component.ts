@@ -14,6 +14,7 @@ export class LoanComponent implements OnInit {
   loanForm: FormGroup;
   todayDate: string = new Date().toISOString().split('T')[0];
   idbook: string | null = null;
+  showAlert: boolean = false;
 
   constructor(
     private loanService: LoanService,
@@ -63,6 +64,10 @@ export class LoanComponent implements OnInit {
       this.loanService.createLoan(newLoan).subscribe(
         () => {
           this.loanForm.reset();
+          this.showAlert = true;
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 3000);
         },
         (error) => {
           console.error('Error creating loan:', error);

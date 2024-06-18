@@ -6,7 +6,7 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookProductComponent } from './book-product/book-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+//import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     BookProductComponent,
   ],
   imports: [
-    PdfViewerModule ,
+    //PdfViewerModule ,
     CommonModule,
     BookRoutingModule,
     ReactiveFormsModule

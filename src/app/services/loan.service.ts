@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class LoanService {
-  private apiUrl = environment.API_URL + '/loans';
+  private apiUrl = `${environment.API_URL}/loans`;
 
   constructor(private http: HttpClient) {
     console.log('API URL:', this.apiUrl);
@@ -23,6 +23,6 @@ export class LoanService {
   }
 
   deleteLoan(idloan: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}${idloan}`);
+    return this.http.delete<void>(`${this.apiUrl}/${idloan}`);
   }
 }
