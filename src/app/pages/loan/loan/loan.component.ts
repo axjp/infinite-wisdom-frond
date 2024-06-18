@@ -20,6 +20,7 @@ export class LoanComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) {
+    // Inicialización del formulario y validaciones
     this.loanForm = this.fb.group({
       loan_date: ['', Validators.required],
       return_date: ['', [Validators.required, Validators.max(10)]],
@@ -29,6 +30,7 @@ export class LoanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Obtención del parámetro idbook de la ruta
     this.route.paramMap.subscribe(params => {
       this.idbook = params.get('idbook');
       console.log('Book ID:', this.idbook);
@@ -36,7 +38,9 @@ export class LoanComponent implements OnInit {
   }
 
   onSubmit(): void {
+    // Manejo del evento de envío del formulario
     if (this.loanForm.valid) {
+      // Creación de un nuevo préstamo basado en los datos del formulario
       const newLoan: LoanI = {
         loanDate: new Date(this.loanForm.value.loan_date),
         returnDate: +this.loanForm.value.return_date,
@@ -45,12 +49,13 @@ export class LoanComponent implements OnInit {
         idbook: this.idbook || '' // Incluye idbook en el préstamo
       };
 
+      // Llamada al servicio para crear el préstamo
       this.loanService.createLoan(newLoan).subscribe(
         () => {
-          this.loanForm.reset();
-          this.showAlert = true;
+          this.loanForm.reset(); // Reinicia el formulario después de enviar
+          this.showAlert = true; // Muestra el mensaje de alerta
           setTimeout(() => {
-            this.showAlert = false;
+            this.showAlert = false; // Oculta el mensaje de alerta después de 3 segundos
           }, 3000);
         },
         (error) => {
@@ -61,6 +66,7 @@ export class LoanComponent implements OnInit {
   }
 
   isReturnDateInvalid(): boolean {
+    // Verifica si la fecha de retorno es inválida (mayor a 10 días)
     const returnDateControl = this.loanForm.get('return_date');
     return !!returnDateControl && returnDateControl?.touched && returnDateControl.invalid;
   }
