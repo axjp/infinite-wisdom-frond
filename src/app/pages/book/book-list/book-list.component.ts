@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class BookListComponent {
   private readonly bookService = inject(BookService);
   private readonly router = inject(Router);
-
   protected books: BookI[] = [];
   protected book: BookI = {};
   

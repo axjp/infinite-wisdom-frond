@@ -31,4 +31,8 @@ export class BookService {
     return this.httpClient.get<BookI>(`${this.API_URL_USER}/${idbook}`);
   }
   
+  getBooksByCategory(categories: string): Observable<BookI[]> {
+    return this.httpClient.get<BookI[]>(`${this.API_URL_USER}/category/${categories}`);
+  }
+  
 }
