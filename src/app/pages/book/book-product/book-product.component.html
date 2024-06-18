@@ -12,11 +12,12 @@
                 <p class="card-text"><small class="text-muted">Editorial: {{ book.editorial }}</small></p>
                 <p class="card-text"><small class="text-muted">Categories: {{ book.categories }}</small></p>
                 <a [href]="book.pdfUrl" class="btn btn-outline-success" target="_blank">Read PDF</a>
+                <a [routerLink]="['/loans/form', book.idbook]" class="btn btn-outline-primary">Loan this Book</a>
             </div>
         </div>
     </div>
     <div class="pdf-container">
         <pdf-viewer [src]="book.pdfUrl" [render-text]="true" [original-size]="false"
             style="width: 900px; height: 650px"></pdf-viewer>
-            
+
 </div>

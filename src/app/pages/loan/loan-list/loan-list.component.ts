@@ -13,13 +13,14 @@ export class LoanListComponent implements OnInit {
   constructor(private loanService: LoanService) {}
 
   ngOnInit(): void {
-    this.getLoans();
+    this.getLoans(); // Al inicializar el componente, obtiene la lista de préstamos
   }
 
   getLoans(): void {
+    // Llama al servicio para obtener la lista de préstamos
     this.loanService.findLoans().subscribe(
       (response: LoanI[]) => {
-        this.loans = response.filter(loan => loan.state); // Solo préstamos activos
+        this.loans = response.filter(loan => loan.state); // Filtra solo los préstamos activos
       },
       (error) => {
         console.error('Error fetching loans:', error);
@@ -28,10 +29,11 @@ export class LoanListComponent implements OnInit {
   }
 
   deleteLoan(idloan?: string): void {
+    // Elimina un préstamo por su ID específico
     if (idloan) {
       this.loanService.deleteLoan(idloan).subscribe(
         () => {
-          this.loans = this.loans.filter(loan => loan.idloan !== idloan); // Actualizar la lista después de eliminar el préstamo
+          this.loans = this.loans.filter(loan => loan.idloan !== idloan); // Actualiza la lista después de eliminar el préstamo
         },
         (error) => {
           console.error('Error deleting loan:', error);

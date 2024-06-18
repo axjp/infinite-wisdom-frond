@@ -21,7 +21,6 @@ const routes: Routes = [
     path: 'product/:idbook',
     component: BookProductComponent
   },
-
 ];
 
 @NgModule({

@@ -11,6 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { MainComponent } from './pages/main/main.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MainComponent } from './pages/main/main.component';
     MainComponent
   ],
   imports: [
+    PdfViewerModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
