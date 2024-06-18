@@ -42,9 +42,4 @@ export class BookListComponent {
     this.router.navigate(['/books/form', idbook]);
   }
 
-  navigateToLoanForm(idbook?: string): void {
-    if (idbook) {
-      this.router.navigate(['/loans/form', idbook]); // Navigate to loan form with book ID
-    }
-  }
 }

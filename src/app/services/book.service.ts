@@ -16,9 +16,11 @@ export class BookService {
   createBook(payload: FormData): Observable<any> {
     return this.httpClient.post(this.API_URL_USER, payload);
   }
+  
   updateBook(id: string, payload: FormData): Observable<any> {
     return this.httpClient.put(`${this.API_URL_USER}/${id}`, payload);
   }
+
   deleteBook(id: string) {
     return this.httpClient.delete(`${this.API_URL_USER}/${id}`);
   }

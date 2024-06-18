@@ -5,7 +5,6 @@
         <img src="assets\img\logo.png" alt="Infinite-wisdom" width="80px">
         <div class="FormGroup">
           <form [formGroup]="form">
-            <h2>{{ isEditMode ? 'Actualizar Administrador' : 'Registrar Administrador' }}</h2>
               <!-- Nombre -->
               <div>
                 <label for="name" class="form-label">Nombre:</label>
@@ -64,7 +63,6 @@
               </div>
               <br>
               <button type="button" (click)="saveOrUpdate()">
-                {{ isEditMode ? 'Guardar Cambios' : 'Registrar Administrador' }}
               </button>
             </form>
           </div>
