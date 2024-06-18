@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, inject } from '@angular/core';
 import { BookI } from '../../../models/book.interface';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../../services/book.service';
@@ -8,16 +8,17 @@ import { BookService } from '../../../services/book.service';
   templateUrl: './book-product.component.html',
   styleUrls: ['./book-product.component.scss']
 })
-export class BookProductComponent implements OnInit {
-  @Input() book!: BookI;
-  idbook: string = '';
+export class BookProductComponent {
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly bookService = inject(BookService);
+  protected idbook: string='';
+  protected book: BookI= {};
 
-  constructor(
-    private route: ActivatedRoute,
-    private bookService: BookService
-  ) { }
 
-  ngOnInit(): void {
+
+  constructor() {
+
+
     this.route.params.subscribe(params => {
       this.idbook = params['idbook'];
       if (this.idbook) {
@@ -31,4 +32,5 @@ export class BookProductComponent implements OnInit {
       this.book = response;
     });
   }
+
 }

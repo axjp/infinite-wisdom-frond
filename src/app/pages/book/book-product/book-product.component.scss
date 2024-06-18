@@ -1,16 +1,33 @@
 .card {
-    width: 18rem;
-    margin: 1rem;
-  }
-  
-  .card-img-top {
-    height: 250px;
-    object-fit: cover;
-  }
-  
-  .card-body {
-    padding: 1rem;
-  }
-  
-  
-  
+  width: 18rem;
+  margin: 1rem;
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.btn-primary {
+  margin-top: 1rem;
+}
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos a los lados del contenedor */
+    align-items: flex-start; /* Alinea los elementos verticalmente arriba */
+    max-width: 1200px; /* Ajusta el ancho máximo del contenedor principal */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+.card-container {
+    flex: 15%;
+    margin-right: 30px; 
+}
+
+.pdf-container {
+    flex: 1; /* Expande el pdf container para ocupar el espacio restante */
+}
