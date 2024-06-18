@@ -31,7 +31,7 @@ export class LoanListComponent implements OnInit {
     if (idloan) {
       this.loanService.deleteLoan(idloan).subscribe(
         () => {
-          this.getLoans(); // Actualizar la lista después de eliminar el préstamo
+          this.loans = this.loans.filter(loan => loan.idloan !== idloan); // Actualizar la lista después de eliminar el préstamo
         },
         (error) => {
           console.error('Error deleting loan:', error);

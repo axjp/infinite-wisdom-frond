@@ -1,39 +1,43 @@
-<div class="container">
-  <h2>List of Loans</h2>
+<div class="container my-5">
+  <h2 class="text-center mb-4">List of Loans</h2>
+
+  <!-- Alert Message -->
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+    Loan submitted successfully!
+    <button type="button" class="btn-close" (click)="showAlert = false" aria-label="Close"></button>
+  </div>
 
   <!-- Loan Form -->
-  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="loan_date">Loan Date:</label>
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="shadow p-5 rounded bg-white">
+    <div class="form-group mb-4">
+      <label for="loan_date" class="form-label">Loan Date:</label>
       <input type="date" id="loan_date" formControlName="loan_date" class="form-control" [min]="todayDate">
     </div>
 
-    <div class="form-group">
-      <label for="return_date">Return Date:</label>
-      <input type="number" id="return_date" formControlName="return_date" class="form-control">
-      <div *ngIf="isReturnDateInvalid()" class="text-danger">
-        Maximum return days exceeded.
+    <div class="form-group mb-4">
+      <label for="return_date" class="form-label">Return Date (max 10 days):</label>
+      <input type="number" id="return_date" formControlName="return_date" class="form-control" placeholder="Enter number of days">
+      <div *ngIf="isReturnDateInvalid()" class="text-danger mt-2">
+        Maximum return days exceeded. The maximum is 10 days.
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email" class="form-control">
+    <div class="form-group mb-4">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email">
     </div>
 
-    <div class="form-group">
-      <label for="state">State:</label>
-      <select id="state" formControlName="state" class="form-control">
+    <div class="form-group mb-4">
+      <label for="state" class="form-label">State:</label>
+      <select id="state" formControlName="state" class="form-select">
         <option [ngValue]="true">Active</option>
         <option [ngValue]="false">Inactive</option>
       </select>
     </div>
 
-    <button type="submit" [disabled]="loanForm.invalid" class="btn btn-primary">Submit</button>
-
-    <a routerLink="/loans/list" class="btn btn-secondary ms-2">whatch loan</a>
-
+    <div class="d-flex justify-content-between">
+      <button type="submit" [disabled]="loanForm.invalid" class="btn btn-primary">Submit</button>
+      <a routerLink="/loans/list" class="btn btn-outline-secondary">Watch Loan</a>
+    </div>
   </form>
-
-  <hr>
 </div>
