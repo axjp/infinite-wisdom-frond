@@ -21,12 +21,21 @@
       <td class="table-dark">{{ administrator.birthdate | date }}</td>
       <td class="table-dark">{{ administrator.email }}</td>
       <td class="table-dark">
+<<<<<<< HEAD
       
         <button class="btn btn-lg btn-outline-primary"  (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
       </td>
       <td class="table-dark">
        
         <button  class="btn btn-lg btn-outline-primary"  (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
+=======
+        <!-- Ejemplo de botón para actualizar -->
+        <button type="button" class="btn-close" aria-label="Close" (click)="updateAdministrator(administrator.idAdministrator)">Actualizar</button>
+      </td>
+      <td class="table-dark">
+        <!-- Ejemplo de botón para eliminar -->
+        <button type="button" class="btn-close" aria-label="Close" (click)="deleteAdministrator(administrator.idAdministrator)">Eliminar</button>
+>>>>>>> 5a318b7378c12b4fc6e912045e1ee3ea2c836fe0
       </tr>
   </tbody>
 }
