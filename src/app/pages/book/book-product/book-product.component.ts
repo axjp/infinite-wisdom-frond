@@ -11,10 +11,11 @@ import { BookService } from '../../../services/book.service';
 export class BookProductComponent {
   private route: ActivatedRoute = inject(ActivatedRoute);
   private readonly bookService = inject(BookService);
-  
   protected idbook: string='';
   protected book: BookI= {};
 
+
+  
   constructor() {
    
 
@@ -31,4 +32,5 @@ export class BookProductComponent {
       this.book = response;
     });
   }
+  
 }
