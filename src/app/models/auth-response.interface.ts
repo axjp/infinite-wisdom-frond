@@ -9,6 +9,5 @@ export interface AuthResponseI {
     cellphone: string;
     birthday: Date;
     state: boolean;
-    // otros campos que desees incluir
   };
 }

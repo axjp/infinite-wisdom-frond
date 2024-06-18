@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
-  styleUrl: './book-form.component.scss'
+  styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent {
   private route: ActivatedRoute = inject(ActivatedRoute);
@@ -29,7 +29,6 @@ export class BookFormComponent {
       this.idbook = params['idbook'];
       if (this.idbook) {
         this.findOneBook(this.idbook);
-        console.log(this.idbook);
       }
     });
   }
@@ -43,7 +42,7 @@ export class BookFormComponent {
       edition: [null, [Validators.required, Validators.min(0)]],
       editorial: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(100)]],
-      pdfname: ['', [Validators.required]],
+      pdfName: ['', [Validators.required]],
       imageUrl: ['', [Validators.required]],
       categories: [[], Validators.required],
       state: [false, Validators.requiredTrue],
@@ -52,52 +51,51 @@ export class BookFormComponent {
 
   get titleField(): AbstractControl {
     return this.form.controls['title'];
-  };
+  }
   get nameauthorField(): AbstractControl {
     return this.form.controls['nameauthor'];
-  };
+  }
   get lastnameauthorField(): AbstractControl {
     return this.form.controls['lastnameauthor'];
-  };
+  }
   get publicationDateField(): AbstractControl {
     return this.form.controls['publicationDate'];
-  };
+  }
   get editionField(): AbstractControl {
     return this.form.controls['edition'];
-  };
+  }
   get editorialField(): AbstractControl {
     return this.form.controls['editorial'];
-  };
+  }
   get descriptionField(): AbstractControl {
     return this.form.controls['description'];
-  };
-  get pdfnameField(): AbstractControl {
-    return this.form.controls['pdfname'];
-  };
+  }
+  get pdfNameField(): AbstractControl {
+    return this.form.controls['pdfName'];
+  }
   get imageUrlField(): AbstractControl {
     return this.form.controls['imageUrl'];
-  };
+  }
   get categoriesField(): AbstractControl {
     return this.form.controls['categories'];
-  };
+  }
   get stateField(): AbstractControl {
     return this.form.controls['state'];
-  };
+  }
 
   validateform() {
     if (this.form.status === 'VALID') {
       this.bookService.createBook(this.form.value).subscribe(
         response => {
           alert('Registro realizado con éxito');
-        });
+        }
+      );
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
 
-
-  
   getFile(event: any, fileType: string) {
     const [file] = event.target.files;
     if (fileType === 'image') {
@@ -112,6 +110,7 @@ export class BookFormComponent {
       };
     }
   }
+
   submitForm() {
     if (this.form.valid) {
       const formData = new FormData();
@@ -132,21 +131,51 @@ export class BookFormComponent {
         formData.append('pdf', this.fileTmp.fileRaw);
       }
 
-      this.bookService.createBook(formData).subscribe(
-        response => {
-          alert('Registro realizado con éxito');
-          console.log(response);
-        },
-        error => {
-          alert('Ocurrió un error al registrar el libro');
-        }
-      );
+      if (this.idbook) {
+        // Si hay un ID, estamos actualizando
+        this.updateBook(formData);
+      } else {
+        // Si no hay un ID, estamos creando un nuevo libro
+        this.createBook(formData);
+      }
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
- /* uploadFiles() {
+
+  createBook(formData: FormData) {
+    this.bookService.createBook(formData).subscribe(
+      response => {
+        alert('Registro realizado con éxito');
+        console.log(response);
+      },
+      error => {
+        alert('Ocurrió un error al registrar el libro');
+      }
+    );
+  }
+
+  updateBook(formData: FormData) {
+    this.bookService.updateBook(this.idbook, formData).subscribe(
+      response => {
+        alert('Libro actualizado con éxito');
+        console.log(response);
+      },
+      error => {
+        alert('Ocurrió un error al actualizar el libro');
+      }
+    );
+  }
+  findOneBook(idbook: string) {
+    this.bookService.findOneBook(idbook).subscribe(response => {
+      this.book = response;
+      this.form.patchValue(this.book);
+    });
+  }
+}
+
+/* uploadFiles() {
     const formData = new FormData();
     if (this.imageTmp) {
       formData.append('image', this.imageTmp.fileRaw);
@@ -179,11 +208,3 @@ export class BookFormComponent {
      }
    }
  */
-  findOneBook(idbook: string) {
-    this.bookService.findOneBook(idbook).subscribe(response => {
-      this.book = response;
-      this.form.patchValue(this.book);
-    });
-  }
-
-}
