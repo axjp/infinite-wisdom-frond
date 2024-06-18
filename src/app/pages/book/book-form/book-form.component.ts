@@ -29,7 +29,7 @@ export class BookFormComponent {
       this.idbook = params['idbook'];
       if (this.idbook) {
         this.findOneBook(this.idbook);
-        console.log(this.idbook);
+       
       }
     });
   }
@@ -43,7 +43,7 @@ export class BookFormComponent {
       edition: [null, [Validators.required, Validators.min(0)]],
       editorial: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(100)]],
-      pdfname: ['', [Validators.required]],
+      pdfName: ['', [Validators.required]],
       imageUrl: ['', [Validators.required]],
       categories: [[], Validators.required],
       state: [false, Validators.requiredTrue],
@@ -71,8 +71,8 @@ export class BookFormComponent {
   get descriptionField(): AbstractControl {
     return this.form.controls['description'];
   };
-  get pdfnameField(): AbstractControl {
-    return this.form.controls['pdfname'];
+  get pdfNameField(): AbstractControl {
+    return this.form.controls['pdfName'];
   };
   get imageUrlField(): AbstractControl {
     return this.form.controls['imageUrl'];
@@ -124,6 +124,7 @@ export class BookFormComponent {
       formData.append('description', this.form.get('description')?.value);
       formData.append('categories', this.form.get('categories')?.value);
       formData.append('state', this.form.get('state')?.value);
+      
 
       if (this.imageTmp) {
         formData.append('image', this.imageTmp.fileRaw);
@@ -132,21 +133,41 @@ export class BookFormComponent {
         formData.append('pdf', this.fileTmp.fileRaw);
       }
 
-      this.bookService.createBook(formData).subscribe(
-        response => {
-          alert('Registro realizado con éxito');
-          console.log(response);
-        },
-        error => {
-          alert('Ocurrió un error al registrar el libro');
-        }
-      );
+      if (this.idbook) {
+        // Si hay un ID, estamos actualizando
+        this.updateBook(formData);
+      } else {
+        // Si no hay un ID, estamos creando un nuevo libro
+        this.bookService.createBook(formData);
+      }
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
- /* uploadFiles() {
+
+  updateBook(formData: FormData) {
+    this.bookService.updateBook(this.idbook, formData).subscribe(
+      response => {
+        alert('Libro actualizado con éxito');
+        console.log(response);
+      },
+      error => {
+        alert('Ocurrió un error al actualizar el libro');
+      }
+    );
+  }
+  
+  findOneBook(idbook: string) {
+    this.bookService.findOneBook(idbook).subscribe(response => {
+      this.book = response;
+      this.form.patchValue(this.book);
+    });
+  }
+
+}
+
+/* uploadFiles() {
     const formData = new FormData();
     if (this.imageTmp) {
       formData.append('image', this.imageTmp.fileRaw);
@@ -179,11 +200,3 @@ export class BookFormComponent {
      }
    }
  */
-  findOneBook(idbook: string) {
-    this.bookService.findOneBook(idbook).subscribe(response => {
-      this.book = response;
-      this.form.patchValue(this.book);
-    });
-  }
-
-}

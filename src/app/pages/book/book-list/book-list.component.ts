@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BookService } from '../../../services/book.service';
 import { BookI } from '../../../models/book.interface';
 import { Router } from '@angular/router';
@@ -8,10 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss']
 })
-export class BookListComponent implements OnInit {
-  books: BookI[] = [];
-
-  constructor(private bookService: BookService, private router: Router) {}
+export class BookListComponent {
+  private readonly bookService = inject(BookService);
+  private readonly router = inject(Router);
+  protected books: BookI[] = [];
+  protected book: BookI = {};
+  
 
   ngOnInit(): void {
     this.findBooks();

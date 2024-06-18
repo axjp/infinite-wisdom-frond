@@ -147,20 +147,16 @@
           }
 
           <div class="mb-3">
-            <label for="pdfname" class="form-label">Pdf</label>
-            <input type="file" (change)="getFile($event, 'pdf')" class="form-control" id="pdfname" accept=".pdf"
-              formControlName="pdfname">
+            <label for="pdfName" class="form-label">Pdf</label>
+            <input type="file" (change)="getFile($event, 'pdf')" class="form-control" id="pdfName" accept=".pdf"
+              formControlName="pdfName">
+              
           </div>
-          @if (pdfnameField.errors ) {
-          @if (pdfnameField.errors['required'] && pdfnameField.touched) {
+          @if (pdfNameField.errors ) {
+          @if (pdfNameField.errors['required'] && pdfNameField.touched) {
           <span>* El campo PDF es requerido</span>
           }
-          @if (pdfnameField.errors['minlength'] && pdfnameField.dirty) {
-          <span>El campo titulo debe contener al menos 4 caracteres</span>
-          }
-          @if (pdfnameField.errors['maxlength']&& pdfnameField.dirty ) {
-          <span>* El campo titulo debe contener al maximmo 25 caracteres</span>
-          }
+         
           }
 
           <div class="mb-3 form-check">

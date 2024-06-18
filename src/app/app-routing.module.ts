@@ -35,7 +35,9 @@ const routes: Routes = [
   },*/
   { path: 'login', component: LoginComponent },
   { path: 'protected', component: ProtectedComponent },
-  { path: '**', redirectTo: 'login' } // Redirigir a login por defecto
+  { 
+    path: '**', redirectTo: '/common/not-found'
+  },// Redirigir a login por defecto
 ];
 
 @NgModule({
