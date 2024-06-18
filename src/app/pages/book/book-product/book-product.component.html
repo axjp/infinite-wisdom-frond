@@ -1,14 +1,13 @@
-<div *ngIf="book" class="card">
+<div class="card">
     <img [src]="book.imageUrl" alt="{{ book.title }}" class="card-img-top">
     <div class="card-body">
-      <h5 class="card-title">{{ book.title }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{ book.nameauthor }} {{ book.lastnameauthor }}</h6>
-      <p class="card-text">{{ book.description }}</p>
-      <p class="card-text"><small class="text-muted">Published on: {{ book.publicationDate | date }}</small></p>
-      <p class="card-text"><small class="text-muted">Edition: {{ book.edition }}</small></p>
-      <p class="card-text"><small class="text-muted">Editorial: {{ book.editorial }}</small></p>
-      <p class="card-text"><small class="text-muted">Categories: {{ book.categories }}</small></p>
-      <a [href]="book.pdfUrl" class="btn btn-primary" target="_blank">Read PDF</a>
+        <h5 class="card-title">{{ book.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ book.nameauthor }} {{ book.lastnameauthor }}</h6>
+        <p class="card-text">{{ book.description }}</p>
+        <p class="card-text"><small class="text-muted">Published on: {{ book.publicationDate | date }}</small></p>
+        <p class="card-text"><small class="text-muted">Edition: {{ book.edition }}</small></p>
+        <p class="card-text"><small class="text-muted">Editorial: {{ book.editorial }}</small></p>
+        <p class="card-text"><small class="text-muted">Categories: {{ book.categories }}</small></p>
+        <a [href]="book.pdfUrl" class="btn btn-outline-success" target="_blank">Read PDF</a>
     </div>
-  </div>
-  
+</div>

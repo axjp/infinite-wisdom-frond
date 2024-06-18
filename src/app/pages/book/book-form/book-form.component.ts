@@ -124,6 +124,7 @@ export class BookFormComponent {
       formData.append('description', this.form.get('description')?.value);
       formData.append('categories', this.form.get('categories')?.value);
       formData.append('state', this.form.get('state')?.value);
+      
 
       if (this.imageTmp) {
         formData.append('image', this.imageTmp.fileRaw);
@@ -132,21 +133,31 @@ export class BookFormComponent {
         formData.append('pdf', this.fileTmp.fileRaw);
       }
 
-      this.bookService.createBook(formData).subscribe(
-        response => {
-          alert('Registro realizado con éxito');
-          console.log(response);
-        },
-        error => {
-          alert('Ocurrió un error al registrar el libro');
-        }
-      );
+      if (this.idbook) {
+        // Si hay un ID, estamos actualizando
+        this.updateBook(formData);
+      } else {
+        // Si no hay un ID, estamos creando un nuevo libro
+        this.bookService.createBook(formData);
+      }
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, completa los campos correctamente.');
     }
   }
- 
+
+  updateBook(formData: FormData) {
+    this.bookService.updateBook(this.idbook, formData).subscribe(
+      response => {
+        alert('Libro actualizado con éxito');
+        console.log(response);
+      },
+      error => {
+        alert('Ocurrió un error al actualizar el libro');
+      }
+    );
+  }
+  
   findOneBook(idbook: string) {
     this.bookService.findOneBook(idbook).subscribe(response => {
       this.book = response;

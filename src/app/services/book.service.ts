@@ -16,13 +16,9 @@ export class BookService {
   createBook(payload: FormData): Observable<any> {
     return this.httpClient.post(this.API_URL_USER, payload);
   }
-  createBookk(payload: BookI):Observable<BookI>  {
-    return this.httpClient.post<BookI>(this.API_URL_USER, payload);
+  updateBook(id: string, payload: FormData): Observable<any> {
+    return this.httpClient.put(`${this.API_URL_USER}/${id}`, payload);
   }
-  updateBook(id: string, payload: BookI):Observable<BookI> {
-    return this.httpClient.put<BookI>(`${this.API_URL_USER}/${id}`, payload);
-  }
-
   deleteBook(id: string) {
     return this.httpClient.delete(`${this.API_URL_USER}/${id}`);
   }
@@ -34,5 +30,11 @@ export class BookService {
   getBooksByCategory(categories: string): Observable<BookI[]> {
     return this.httpClient.get<BookI[]>(`${this.API_URL_USER}/category/${categories}`);
   }
-  
+  createBookk(payload: BookI):Observable<BookI>  {
+    return this.httpClient.post<BookI>(this.API_URL_USER, payload);
+  }
+ /* updateBook(id: string, payload: BookI):Observable<BookI> {
+    return this.httpClient.put<BookI>(`${this.API_URL_USER}/${id}`, payload);
+  }
+  */
 }

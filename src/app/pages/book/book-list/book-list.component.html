@@ -16,8 +16,6 @@
             <th scope="col">ESTADO</th>
             <th scope="col">ELIMINAR</th>
             <th scope="col">ACTUALIZAR</th>
-            <th scope="col">ACTUALIZAR</th>
-            <th scope="col">PRESTAR</th>
         </tr>
     </thead>
     <tbody>
@@ -25,22 +23,16 @@
         <tr>
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ book.title }}</td>
-
-
-            <td>{{ book.idbook }}</td>
             <td>
                 <img [src]="book.imageUrl" alt="{{book.title}}">
             </td>
-           <!-- <pdf-viewer [src]="book.pdfUrl" [render-text]="true" [original-size]="false"
-                style="width: 200px; height: 300px"></pdf-viewer>-->
+            <pdf-viewer [src]="book.pdfUrl" [render-text]="true" [original-size]="false"
+                style="width: 200px; height: 300px"></pdf-viewer>
             <td>{{ book.nameauthor }}</td>
             <td>{{ book.lastnameauthor }}</td>
             <td>{{ book.publicationDate }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.edition }}</td>
-
-            <td>{{ book.publicationDate }}</td>
-
             <td>{{ book.description }}</td>
             <td>{{ book.categories }}</td>
             <td>{{ book.state }}</td>
@@ -48,9 +40,8 @@
                 <button type="button" class="btn btn-danger" (click)="deleteBook(book.idbook)">Eliminar</button>
             </td>
             <td><button class="btn btn-danger" (click)="update(book.idbook)">Actualizar</button></td>
-
             <td>
-              <button class="btn btn-primary" (click)="navigateToLoanForm(book.idbook)">Prestar</button> <!-- Botón para navegar al formulario de préstamos -->
+                <button class="btn btn-primary" (click)="navigateToLoanForm(book.idbook)">Prestar</button>
             </td>
 
         </tr>
